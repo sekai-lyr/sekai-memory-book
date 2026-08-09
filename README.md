@@ -1,4 +1,4 @@
-﻿# 馃摎 Sekai Memory Book 路 浜屾鍏冨洖蹇嗗綍
+# 馃摎 Sekai Memory Book 路 浜屾鍏冨洖蹇嗗綍
 
 > **璁板綍鐣墽銆佽鑹蹭笌鍙拌瘝鐨勭浜轰簩娆″厓鍥炲繂褰?*
 > A private anime memory book 鈥?track anime, characters & quotes
@@ -57,7 +57,7 @@ mvn test
 
 
 <p align="center">
-  <img src="screenshots/demo.gif" alt="Demo" width="720"/>
+  <img src="screenshots/demo.webp" alt="Demo" width="720"/>
 </p>
 ---
 
