@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 角色</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home"><h1>Sekai Memory Book</h1><p>番剧回忆录</p></a>
+        <nav class="nav">
+            <a href="/home">首页</a><a href="/anime">番剧</a><a class="active" href="/characters">角色</a><a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a><a href="/yearly-report">年度报告</a><a href="/advanced">高级功能</a><a href="/search">搜索</a><a href="/image-lab">图片实验室</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+    <main class="main-wrap">
+        <section class="page-title glass-panel"><p class="eyebrow">CHARACTER FAVORITES</p><h2>角色收藏</h2><p>给喜欢的角色留一张卡片，写下喜欢理由和喜欢程度。</p></section>
+        <div class="content-grid">
+            <form class="form-card" action="/characters/add" method="post">
+                <input type="hidden" name="returnTo" th:value="@{/characters(page=${currentPage})}">
+                <h3>添加角色</h3>
+                <div class="server-message success" th:if="${message}" th:text="${message}"></div>
+                <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+                <div class="form-group"><label for="characterName">角色名</label><input id="characterName" name="characterName" type="text" placeholder="请输入角色名" required></div>
+                <div class="form-group"><label for="animeId">所属番剧</label><select id="animeId" name="animeId"><option value="">不关联</option><option th:each="anime : ${animeOptions}" th:value="${anime.id}" th:text="${anime.title}">番剧标题</option></select></div>
+                <div class="form-group"><label for="imageUrl">角色图片 URL</label><input id="imageUrl" name="imageUrl" type="url" placeholder="https://..."></div>
+                <div class="form-group"><label for="favoriteLevel">喜欢程度</label><select id="favoriteLevel" name="favoriteLevel"><option value="5">5 星</option><option value="4">4 星</option><option value="3">3 星</option><option value="2">2 星</option><option value="1">1 星</option></select></div>
+                <div class="form-group"><label for="reason">喜欢理由</label><textarea id="reason" name="reason" placeholder="为什么喜欢这个角色"></textarea></div>
+                <button class="primary-btn" type="submit">保存角色</button>
+            </form>
+            <section class="list-panel">
+                <div class="toolbar glass-panel"><span class="toolbar-count" th:text="'共 ' + ${totalCount} + ' 个角色'">共 0 个角色</span></div>
+                <div class="empty-state glass-panel" th:if="${#lists.isEmpty(characterList)}">还没有角色收藏。</div>
+                <article class="timeline-card archive-card" th:each="character : ${characterList}">
+                    <div class="timeline-image archive-image character-image" th:attr="data-fallback-url=${animeCoverById[character.animeId]}">
+                        <span class="image-fallback">角色</span>
+                        <img th:if="${character.imageUrl != null && !#strings.isEmpty(character.imageUrl) && (#strings.startsWith(character.imageUrl, 'http://') || #strings.startsWith(character.imageUrl, 'https://'))}" th:src="@{/image/proxy(url=${character.imageUrl})}" alt="角色图片" onerror="var u=this.parentElement.dataset.fallbackUrl;if(u&&!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src=/^https?:\/\//.test(u)?'/image/proxy?url='+encodeURIComponent(u):u}else{this.remove()}">
+                        <img th:if="${character.imageUrl != null && !#strings.isEmpty(character.imageUrl) && !(#strings.startsWith(character.imageUrl, 'http://') || #strings.startsWith(character.imageUrl, 'https://'))}" th:src="${character.imageUrl}" alt="角色图片" onerror="var u=this.parentElement.dataset.fallbackUrl;if(u&&!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src=/^https?:\/\//.test(u)?'/image/proxy?url='+encodeURIComponent(u):u}else{this.remove()}">
+                    </div>
+                    <div class="timeline-copy archive-copy">
+                        <div class="timeline-topline"><span class="tag">角色</span></div>
+                        <h3 th:text="${character.characterName}">角色名</h3>
+                        <div class="meta-row">
+                            <span class="tag" th:if="${character.favoriteLevel}" th:text="${character.favoriteLevel + ' 星'}">5 星</span>
+                            <a class="tag tag-link" th:if="${character.animeId}" th:href="@{'/anime/' + ${character.animeId}}" th:text="'所属番剧 #' + ${character.animeId}">所属番剧</a>
+                        </div>
+                        <p th:if="${character.reason}" th:text="${character.reason}">喜欢理由</p>
+                        <details class="edit-panel">
+                            <summary>编辑</summary>
+                            <form th:action="@{'/characters/update/' + ${character.id}}" method="post">
+                                <input type="hidden" name="returnTo" th:value="@{/characters(page=${currentPage})}">
+                                <div class="form-group"><label th:for="'edit-character-' + ${character.id}">角色名</label><input th:id="'edit-character-' + ${character.id}" name="characterName" type="text" th:value="${character.characterName}" required></div>
+                                <div class="form-group"><label th:for="'edit-character-anime-' + ${character.id}">所属番剧</label><select th:id="'edit-character-anime-' + ${character.id}" name="animeId"><option value="">不关联</option><option th:each="anime : ${animeOptions}" th:value="${anime.id}" th:text="${anime.title}" th:selected="${character.animeId == anime.id}">番剧标题</option></select></div>
+                                <div class="form-group"><label th:for="'edit-image-' + ${character.id}">图片 URL</label><input th:id="'edit-image-' + ${character.id}" name="imageUrl" type="url" th:value="${character.imageUrl}"></div>
+                                <div class="form-group"><label th:for="'edit-level-' + ${character.id}">喜欢程度</label><select th:id="'edit-level-' + ${character.id}" name="favoriteLevel"><option value="5" th:selected="${character.favoriteLevel == 5}">5 星</option><option value="4" th:selected="${character.favoriteLevel == 4}">4 星</option><option value="3" th:selected="${character.favoriteLevel == 3}">3 星</option><option value="2" th:selected="${character.favoriteLevel == 2}">2 星</option><option value="1" th:selected="${character.favoriteLevel == 1}">1 星</option></select></div>
+                                <div class="form-group"><label th:for="'edit-reason-' + ${character.id}">喜欢理由</label><textarea th:id="'edit-reason-' + ${character.id}" name="reason" th:text="${character.reason}"></textarea></div>
+                                <button class="primary-btn" type="submit">保存修改</button>
+                            </form>
+                        </details>
+                        <div class="card-actions">
+                            <form th:action="@{'/characters/delete/' + ${character.id}}" method="post">
+                                <input type="hidden" name="returnTo" th:value="@{/characters(page=${currentPage})}">
+                                <button class="danger-btn" type="submit">删除</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                <nav class="pagination" th:if="${totalPages > 1}"><a class="secondary-btn" th:classappend="${currentPage == 1} ? ' disabled'" th:href="@{/characters(page=${currentPage - 1})}">上一页</a><span th:text="${currentPage + ' / ' + totalPages}">1 / 1</span><form class="page-jump-form" action="/characters" method="get"><label for="characterPageJump">跳到</label><select id="characterPageJump" name="page" onchange="this.form.submit()"><option th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:value="${pageNumber}" th:selected="${pageNumber == currentPage}" th:text="${pageNumber + ' 页'}">1 页</option></select></form><a class="secondary-btn" th:classappend="${currentPage == totalPages} ? ' disabled'" th:href="@{/characters(page=${currentPage + 1})}">下一页</a></nav>
+            </section>
+        </div>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

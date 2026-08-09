@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 今日整理台</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/memory-graph">记忆图谱</a>
+            <a class="active" href="/pro">Pro</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="briefing-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP DAILY BRIEFING</p>
+                <h2>今日整理台</h2>
+                <p>把“我记录了什么”变成“我接下来该整理什么、分享什么、补什么”。这是给重度用户每天打开就能用的 VIP 工作台。</p>
+                <div class="quick-actions">
+                    <a class="primary-btn" href="/pro/health">档案体检</a>
+                    <a class="secondary-btn" href="/pro/playlists">主题片单</a>
+                    <a class="secondary-btn" href="/pro/watch-plan">补番计划</a>
+                    <a class="secondary-btn" href="/pro/batch">批量整理</a>
+                    <a class="secondary-btn" href="/pro/export/json">完整备份</a>
+                </div>
+            </div>
+            <div class="briefing-next-card" th:if="${nextAnime != null}">
+                <span>今晚建议推进</span>
+                <strong th:text="${nextAnime.title}">番剧标题</strong>
+                <p th:text="${nextAnime.memoryText != null && !#strings.isEmpty(nextAnime.memoryText) ? nextAnime.memoryText : '这部作品适合继续补完，并补一段自己的观后感。'}">推荐理由</p>
+                <a class="primary-btn" th:href="@{'/anime/' + ${nextAnime.id}}">打开记录</a>
+            </div>
+        </section>
+
+        <section class="briefing-goals">
+            <article th:each="goal : ${goals}">
+                <span th:text="${goal.title}">目标</span>
+                <strong th:text="${goal.value}">0</strong>
+                <p th:text="${goal.detail}">说明</p>
+            </article>
+        </section>
+
+        <section class="briefing-grid">
+            <article class="briefing-panel">
+                <div class="section-heading">
+                    <h3>优先补全</h3>
+                    <a href="/pro/health">查看全部</a>
+                </div>
+                <div class="briefing-task-list" th:if="${!#lists.isEmpty(issues)}">
+                    <a th:each="issue : ${issues}" th:href="${issue.href}" th:classappend="${issue.level}">
+                        <span th:text="${issue.type}">类型</span>
+                        <strong th:text="${issue.title}">标题</strong>
+                        <p th:text="${issue.message}">说明</p>
+                    </a>
+                </div>
+                <div class="health-empty" th:if="${#lists.isEmpty(issues)}">
+                    <h3>档案很完整</h3>
+                    <p>目前没有明显缺口，可以去生成年度报告或公开分享页。</p>
+                </div>
+            </article>
+
+            <article class="briefing-panel">
+                <div class="section-heading">
+                    <h3>智能下一部</h3>
+                    <span th:text="${#lists.size(insights.recommendations) + ' 个候选'}">0 个候选</span>
+                </div>
+                <div class="briefing-reco-list" th:if="${!#lists.isEmpty(insights.recommendations)}">
+                    <a th:each="recommendation : ${insights.recommendations}" th:href="@{'/anime/' + ${recommendation.anime.id}}">
+                        <b th:text="${recommendation.matchScore + '%'}">88%</b>
+                        <div>
+                            <strong th:text="${recommendation.anime.title}">番剧</strong>
+                            <p th:text="${recommendation.reason}">理由</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="health-empty" th:if="${#lists.isEmpty(insights.recommendations)}">
+                    <h3>候选不足</h3>
+                    <p>多给番剧加标签、评分和状态后，推荐会更有用。</p>
+                </div>
+            </article>
+
+            <article class="briefing-panel wide">
+                <div class="section-heading">
+                    <h3>分享素材区</h3>
+                    <span>一键拿文案和公开页</span>
+                </div>
+                <div class="share-snippet-grid" th:if="${!#lists.isEmpty(shareSnippets)}">
+                    <article th:each="snippet : ${shareSnippets}">
+                        <img th:if="${snippet.anime.coverUrl != null && !#strings.isEmpty(snippet.anime.coverUrl)}" th:src="${snippet.anime.coverUrl}" alt="封面" onerror="this.remove()">
+                        <div>
+                            <strong th:text="${snippet.anime.title}">番剧</strong>
+                            <p th:text="${snippet.copy}">分享文案</p>
+                            <div class="card-actions">
+                                <a class="secondary-btn" th:href="${snippet.href}">公开页</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="health-empty" th:if="${#lists.isEmpty(shareSnippets)}">
+                    <h3>还没有素材</h3>
+                    <p>给番剧补上封面后，这里会自动生成可分享素材。</p>
+                </div>
+            </article>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

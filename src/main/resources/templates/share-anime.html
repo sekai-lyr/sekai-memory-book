@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${anime.title + ' - 记忆分享卡'}">记忆分享卡</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="share-page">
+    <main class="share-card">
+        <section class="share-cover">
+            <img th:if="${anime.coverUrl != null && !#strings.isEmpty(anime.coverUrl)}" th:src="${anime.coverUrl}" alt="番剧封面" onerror="this.remove()">
+        </section>
+        <section class="share-copy">
+            <p class="eyebrow">SEKAI MEMORY CARD</p>
+            <h1 th:text="${anime.title}">番剧名称</h1>
+            <div class="meta-row">
+                <span class="tag" th:if="${anime.type}" th:text="${anime.type}">类型</span>
+                <span class="tag" th:if="${anime.status}" th:text="${anime.status}">状态</span>
+                <span class="tag" th:if="${anime.score}" th:text="${anime.score + ' 分'}">评分</span>
+                <span class="tag" th:each="tag : ${tagList}" th:text="${tag}">标签</span>
+            </div>
+            <p class="share-memory" th:if="${anime.memoryText}" th:text="${anime.memoryText}">观后感</p>
+
+            <div class="share-section" th:if="${!#lists.isEmpty(relatedCharacters)}">
+                <h2>喜欢的角色</h2>
+                <div class="share-pills">
+                    <span th:each="character : ${relatedCharacters}" th:text="${character.characterName}">角色</span>
+                </div>
+            </div>
+
+            <div class="share-section" th:if="${!#lists.isEmpty(relatedQuotes)}">
+                <h2>摘录台词</h2>
+                <blockquote th:each="quote : ${relatedQuotes}">
+                    <p th:text="${quote.content}">台词</p>
+                    <cite th:text="${quote.characterName != null && !#strings.isEmpty(quote.characterName) ? quote.characterName : '未知角色'}">角色</cite>
+                    <div class="quote-video compact" th:if="${quote.hasVideoUrl()}">
+                        <video th:if="${quote.directVideoUrl}" th:src="${quote.videoUrl}" controls preload="metadata"></video>
+                        <iframe th:if="${quote.embeddableVideoUrl != null}" th:src="${quote.embeddableVideoUrl}" title="台词视频" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <a class="quote-video-link" th:if="${!quote.directVideoUrl && quote.embeddableVideoUrl == null}" th:href="${quote.videoUrl}" target="_blank" rel="noopener">打开台词视频</a>
+                    </div>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

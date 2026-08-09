@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sekai.memory.book.mapper.SekaiMemoryBookAnimeMapper">
+
+    <resultMap id="BaseResultMap" type="com.sekai.memory.book.dataobject.SekaiMemoryBookAnimeDO">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="title" column="title" />
+            <result property="type" column="type" />
+            <result property="status" column="status" />
+            <result property="score" column="score" />
+            <result property="coverUrl" column="cover_url" />
+            <result property="watchDate" column="watch_date" />
+            <result property="releaseDate" column="release_date" />
+            <result property="totalEpisodes" column="total_episodes" />
+            <result property="currentEpisode" column="current_episode" />
+            <result property="lastWatchDate" column="last_watch_date" />
+            <result property="memoryText" column="memory_text" />
+            <result property="tags" column="tags" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,title,type,status,score,
+        cover_url,watch_date,release_date,total_episodes,current_episode,last_watch_date,memory_text,tags,create_time,update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_anime
+        where  id = #{id} 
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_anime
+        where user_id = #{userId}
+        order by id asc
+    </select>
+
+    <select id="selectFilteredByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_anime
+        where user_id = #{userId}
+        <if test="keyword != null and keyword != ''">
+            and (
+                title like concat('%', #{keyword}, '%')
+                or type like concat('%', #{keyword}, '%')
+                or status like concat('%', #{keyword}, '%')
+                or tags like concat('%', #{keyword}, '%')
+                or memory_text like concat('%', #{keyword}, '%')
+            )
+        </if>
+        order by id asc
+    </select>
+
+    <select id="selectByIdAndUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_anime
+        where id = #{id} and user_id = #{userId}
+    </select>
+
+    <select id="countByUserId" resultType="java.lang.Integer">
+        select count(1)
+        from sekai_memory_book_anime
+        where user_id = #{userId}
+        <if test="keyword != null and keyword != ''">
+            and (
+                title like concat('%', #{keyword}, '%')
+                or type like concat('%', #{keyword}, '%')
+                or status like concat('%', #{keyword}, '%')
+                or tags like concat('%', #{keyword}, '%')
+                or memory_text like concat('%', #{keyword}, '%')
+            )
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sekai_memory_book_anime
+        where  id = #{id} 
+    </delete>
+
+    <delete id="deleteByIdAndUserId">
+        delete from sekai_memory_book_anime
+        where id = #{id} and user_id = #{userId}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookAnimeDO" useGeneratedKeys="true">
+        insert into sekai_memory_book_anime
+        ( id,user_id,title,type,status,score,
+        cover_url,watch_date,release_date,total_episodes,current_episode,last_watch_date,memory_text,tags,create_time,update_time)
+        values (#{id},#{userId},#{title},#{type},#{status},#{score},
+        #{coverUrl},#{watchDate},#{releaseDate},#{totalEpisodes},#{currentEpisode},#{lastWatchDate},#{memoryText},#{tags},#{createTime},#{updateTime})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookAnimeDO" useGeneratedKeys="true">
+        insert into sekai_memory_book_anime
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="userId != null">user_id,</if>
+                <if test="title != null">title,</if>
+                <if test="type != null">type,</if>
+                <if test="status != null">status,</if>
+                <if test="score != null">score,</if>
+                <if test="coverUrl != null">cover_url,</if>
+                <if test="watchDate != null">watch_date,</if>
+                <if test="releaseDate != null">release_date,</if>
+                <if test="totalEpisodes != null">total_episodes,</if>
+                <if test="currentEpisode != null">current_episode,</if>
+                <if test="lastWatchDate != null">last_watch_date,</if>
+                <if test="memoryText != null">memory_text,</if>
+                <if test="tags != null">tags,</if>
+                <if test="createTime != null">create_time,</if>
+                <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id},</if>
+                <if test="userId != null">#{userId},</if>
+                <if test="title != null">#{title},</if>
+                <if test="type != null">#{type},</if>
+                <if test="status != null">#{status},</if>
+                <if test="score != null">#{score},</if>
+                <if test="coverUrl != null">#{coverUrl},</if>
+                <if test="watchDate != null">#{watchDate},</if>
+                <if test="releaseDate != null">#{releaseDate},</if>
+                <if test="totalEpisodes != null">#{totalEpisodes},</if>
+                <if test="currentEpisode != null">#{currentEpisode},</if>
+                <if test="lastWatchDate != null">#{lastWatchDate},</if>
+                <if test="memoryText != null">#{memoryText},</if>
+                <if test="tags != null">#{tags},</if>
+                <if test="createTime != null">#{createTime},</if>
+                <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookAnimeDO">
+        update sekai_memory_book_anime
+        <set>
+                <if test="userId != null">
+                    user_id = #{userId},
+                </if>
+                <if test="title != null">
+                    title = #{title},
+                </if>
+                <if test="type != null">
+                    type = #{type},
+                </if>
+                <if test="status != null">
+                    status = #{status},
+                </if>
+                <if test="score != null">
+                    score = #{score},
+                </if>
+                <if test="coverUrl != null">
+                    cover_url = #{coverUrl},
+                </if>
+                <if test="watchDate != null">
+                    watch_date = #{watchDate},
+                </if>
+                <if test="releaseDate != null">
+                    release_date = #{releaseDate},
+                </if>
+                <if test="totalEpisodes != null">
+                    total_episodes = #{totalEpisodes},
+                </if>
+                <if test="currentEpisode != null">
+                    current_episode = #{currentEpisode},
+                </if>
+                <if test="lastWatchDate != null">
+                    last_watch_date = #{lastWatchDate},
+                </if>
+                <if test="memoryText != null">
+                    memory_text = #{memoryText},
+                </if>
+                <if test="tags != null">
+                    tags = #{tags},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime},
+                </if>
+        </set>
+        where   id = #{id} 
+    </update>
+    <update id="updateByIdAndUserId" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookAnimeDO">
+        update sekai_memory_book_anime
+        set
+            title = #{title},
+            type = #{type},
+            status = #{status},
+            score = #{score},
+            cover_url = #{coverUrl},
+            watch_date = #{watchDate},
+            release_date = #{releaseDate},
+            total_episodes = #{totalEpisodes},
+            current_episode = #{currentEpisode},
+            last_watch_date = #{lastWatchDate},
+            memory_text = #{memoryText},
+            tags = #{tags}
+        where id = #{id} and user_id = #{userId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookAnimeDO">
+        update sekai_memory_book_anime
+        set 
+            user_id =  #{userId},
+            title =  #{title},
+            type =  #{type},
+            status =  #{status},
+            score =  #{score},
+            cover_url =  #{coverUrl},
+            watch_date =  #{watchDate},
+            release_date =  #{releaseDate},
+            total_episodes =  #{totalEpisodes},
+            current_episode =  #{currentEpisode},
+            last_watch_date =  #{lastWatchDate},
+            memory_text =  #{memoryText},
+            tags =  #{tags},
+            create_time =  #{createTime},
+            update_time =  #{updateTime}
+        where   id = #{id} 
+    </update>
+</mapper>

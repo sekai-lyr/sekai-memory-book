@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 追番日历</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a class="active" href="/pro">VIP</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="watch-plan-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP CALENDAR</p>
+                <h2>手机追番日历</h2>
+                <p>把未来 7 天的补番安排导出成系统日历文件，手机、平板和电脑都能导入。用户不用每天打开网页，也能收到自己的追番提醒。</p>
+                <div class="quick-actions">
+                    <a class="primary-btn" href="/pro/export/watch-calendar.ics">导入手机日历</a>
+                    <a class="secondary-btn" href="/pro/watch-plan">查看补番计划</a>
+                    <a class="secondary-btn" href="/pro/briefing">今日整理台</a>
+                </div>
+            </div>
+            <div class="watch-plan-stat">
+                <span>本周安排</span>
+                <strong th:text="${plannedEpisodes}">0</strong>
+                <p>计划集数会根据当前进度、总集数、评分和状态自动生成。</p>
+            </div>
+        </section>
+
+        <section class="briefing-goals">
+            <article>
+                <span>日历天数</span>
+                <strong th:text="${#lists.size(watchPlan)}">7</strong>
+                <p>连续 7 天安排，适合导入手机日历。</p>
+            </article>
+            <article>
+                <span>番剧档案</span>
+                <strong th:text="${stats.animeCount}">0</strong>
+                <p>库越完整，生成的计划越像私人助理。</p>
+            </article>
+            <article>
+                <span>角色资料</span>
+                <strong th:text="${stats.characterCount}">0</strong>
+                <p>配合角色和台词，后续可以做主题提醒。</p>
+            </article>
+            <article>
+                <span>台词资产</span>
+                <strong th:text="${stats.quoteCount}">0</strong>
+                <p>让记录变成可分享的内容素材。</p>
+            </article>
+        </section>
+
+        <section class="watch-plan-board" th:if="${!#lists.isEmpty(watchPlan)}">
+            <article class="watch-plan-day" th:each="day : ${watchPlan}">
+                <div class="watch-day-date">
+                    <span th:text="${'DAY ' + day.dayNumber}">DAY 1</span>
+                    <strong th:text="${#temporals.format(day.date, 'MM/dd')}">05/29</strong>
+                </div>
+                <img th:if="${day.anime.coverUrl != null && !#strings.isEmpty(day.anime.coverUrl)}"
+                     th:src="${day.anime.coverUrl}" alt="封面" onerror="this.remove()">
+                <div class="watch-day-copy">
+                    <span th:text="${day.focus}">先启动</span>
+                    <h3 th:text="${day.anime.title}">番剧标题</h3>
+                    <p th:text="${day.reason}">推荐理由</p>
+                    <div class="watch-day-bottom">
+                        <b th:text="${day.episodes + ' 集'}">1 集</b>
+                        <a th:href="@{'/anime/' + ${day.anime.id}}">打开档案</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="health-empty" th:if="${#lists.isEmpty(watchPlan)}">
+            <h3>暂时没有可安排的追番任务</h3>
+            <p>把番剧状态设为“想看”或“在看”，并补上当前集数和总集数后，这里会自动生成可导入手机的 7 天日历。</p>
+            <a class="primary-btn" href="/anime">去整理番剧</a>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

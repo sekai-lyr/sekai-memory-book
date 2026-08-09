@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 注册</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}" href="/css/register.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<main class="register-page">
+    <section class="form-area">
+        <div class="register-card">
+            <div class="card-header">
+                <div class="flower">Sakura</div>
+                <h2>创建账号</h2>
+                <p>开启你的番剧回忆之旅</p>
+            </div>
+
+            <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+
+            <form id="registerForm" th:action="@{/user/register}" action="/user/register" method="post">
+                <div class="form-group">
+                    <label for="userName">用户名</label>
+                    <div class="input-box">
+                        <span class="input-icon">ID</span>
+                        <input type="text" id="userName" name="userName" placeholder="请输入用户名" autocomplete="username" required>
+                    </div>
+                    <div class="error-text" id="userNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nickName">昵称</label>
+                    <div class="input-box">
+                        <span class="input-icon">NC</span>
+                        <input type="text" id="nickName" name="nickName" placeholder="请输入昵称" autocomplete="nickname">
+                    </div>
+                    <div class="error-text" id="nickNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">手机号</label>
+                    <div class="input-box">
+                        <span class="input-icon">PH</span>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="请输入手机号" autocomplete="tel" required>
+                    </div>
+                    <div class="error-text" id="phoneNumberError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <div class="input-box">
+                        <span class="input-icon">PW</span>
+                        <input type="password" id="password" name="password" placeholder="请输入密码" autocomplete="new-password" required>
+                    </div>
+                    <div class="error-text" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码</label>
+                    <div class="input-box">
+                        <span class="input-icon">OK</span>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" autocomplete="new-password" required>
+                    </div>
+                    <div class="error-text" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="agree-box">
+                    <label>
+                        <input type="checkbox" id="agreement" required>
+                        我已阅读并同意
+                        <a href="/terms">用户协议</a>
+                    </label>
+                    <div class="error-text" id="agreementError"></div>
+                </div>
+
+                <button type="submit" class="register-btn">注册</button>
+                <a th:href="@{/login}" href="/login" class="login-btn">返回登录</a>
+
+                <div class="bottom-tip">
+                    已有账号？
+                    <a th:href="@{/login}" href="/login">立即登录</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="brand-area">
+        <div class="brand-title">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </div>
+
+        <div class="brand-slogan">
+            <p>收藏你喜欢的番剧、角色、台词与心情。</p>
+            <p>从今天开始，建立属于你的回忆档案。</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="feature-item"><span>01</span><p>番剧记录</p></div>
+            <div class="feature-item"><span>02</span><p>角色收藏</p></div>
+            <div class="feature-item"><span>03</span><p>台词摘录</p></div>
+            <div class="feature-item"><span>04</span><p>回忆时间线</p></div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Sekai Memory Book
+        <span>|</span>
+        私人回忆收藏馆
+    </footer>
+</main>
+<script th:src="@{/js/register.js}" src="/js/register.js"></script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

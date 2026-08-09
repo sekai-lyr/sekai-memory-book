@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${anime.title + ' - Sekai Memory Book'}">番剧详情 - Sekai Memory Book</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a class="active" href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/advanced">高级功能</a>
+            <a href="/search">搜索</a>
+            <a href="/image-lab">图片工具</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">旅人</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="detail-hero glass-panel">
+            <div class="detail-cover">
+                <img th:if="${anime.coverUrl != null && !#strings.isEmpty(anime.coverUrl)}" th:src="${anime.coverUrl}" alt="番剧封面" onerror="this.remove()">
+            </div>
+            <div class="detail-copy">
+                <p class="eyebrow">ANIME DETAIL</p>
+                <h2 th:text="${anime.title}">番剧名称</h2>
+                <div class="meta-row">
+                    <span class="tag" th:if="${anime.type}" th:text="${anime.type}">类型</span>
+                    <span class="tag" th:if="${anime.status}" th:text="${anime.status}">状态</span>
+                    <span class="tag" th:if="${anime.score}" th:text="${anime.score + ' 分'}">评分</span>
+                    <span class="tag" th:if="${anime.watchDate}" th:text="${anime.watchDate}">日期</span>
+                </div>
+                <div class="meta-row" th:if="${!#lists.isEmpty(tagList)}">
+                    <a class="tag tag-link"
+                       th:each="tag : ${tagList}"
+                       th:href="@{/anime(keyword=${tag})}"
+                       th:text="${tag}">标签</a>
+                </div>
+                <p th:if="${anime.memoryText}" th:text="${anime.memoryText}">回忆笔记</p>
+                <p th:unless="${anime.memoryText}">还没有写下回忆笔记，等某个夜晚补上也很好</p>
+                <div class="quick-actions">
+                    <a class="secondary-btn" href="/anime">返回列表</a>
+                </div>
+                <div class="server-message success" th:if="${message}" th:text="${message}"></div>
+                <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+            </div>
+        </section>
+
+        <section class="detail-grid">
+            <div class="detail-section">
+                <h3>关联角色</h3>
+                <form class="inline-form" action="/characters/add" method="post">
+                    <input type="hidden" name="animeId" th:value="${anime.id}">
+                    <input type="hidden" name="returnTo" th:value="@{'/anime/' + ${anime.id}}">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="detail-character-name">角色名称</label>
+                            <input id="detail-character-name" name="characterName" type="text" placeholder="角色名" required>
+                        </div>
+                        <div class="form-group short-field">
+                            <label for="detail-character-level">喜爱程度</label>
+                            <select id="detail-character-level" name="favoriteLevel">
+                                <option value="5">5 星</option>
+                                <option value="4">4 星</option>
+                                <option value="3">3 星</option>
+                                <option value="2">2 星</option>
+                                <option value="1">1 星</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="detail-character-image">角色图片地址</label>
+                        <input id="detail-character-image" name="imageUrl" type="url" placeholder="可选，粘贴图片 URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="detail-character-reason">喜欢理由</label>
+                        <textarea id="detail-character-reason" name="reason" placeholder="为什么想把这个角色留在这里？"></textarea>
+                    </div>
+                    <button class="primary-btn" type="submit">添加角色</button>
+                </form>
+                <div class="empty-state glass-panel compact" th:if="${#lists.isEmpty(relatedCharacters)}">
+                    还没有通过番剧 ID 关联角色。
+                </div>
+                <article class="mini-card" th:each="character : ${relatedCharacters}">
+                    <strong th:text="${character.characterName}">角色</strong>
+                    <div class="meta-row">
+                        <span class="tag" th:if="${character.favoriteLevel}" th:text="${character.favoriteLevel + ' 星'}">5 星</span>
+                    </div>
+                    <p th:if="${character.reason}" th:text="${character.reason}">喜欢理由</p>
+                </article>
+            </div>
+
+            <div class="detail-section">
+                <h3>关联台词</h3>
+                <form class="inline-form" action="/quotes/add" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="animeId" th:value="${anime.id}">
+                    <input type="hidden" name="returnTo" th:value="@{'/anime/' + ${anime.id}}">
+                    <div class="form-group">
+                        <label for="detail-quote-content">台词内容</label>
+                        <textarea id="detail-quote-content" name="content" placeholder="写下这部番里击中你的那一句" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="detail-quote-character">角色</label>
+                            <input id="detail-quote-character" name="characterName" type="text" placeholder="可选">
+                        </div>
+                        <div class="form-group">
+                            <label for="detail-quote-tag">标签</label>
+                            <input id="detail-quote-tag" name="tag" type="text" placeholder="治愈 / 热血 / 遗憾">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="detail-quote-feeling">感受</label>
+                        <textarea id="detail-quote-feeling" name="feeling" placeholder="这句话为什么值得被记住？"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="detail-quote-video-url">台词视频链接</label>
+                        <input id="detail-quote-video-url" name="videoUrl" type="url" placeholder="粘贴 B站 / YouTube / mp4 链接">
+                    </div>
+                    <div class="form-group">
+                        <label for="detail-quote-video-file">上传台词视频</label>
+                        <input id="detail-quote-video-file" name="videoFile" type="file" accept="video/mp4,video/webm,video/ogg,video/quicktime">
+                    </div>
+                    <button class="primary-btn" type="submit">添加台词</button>
+                </form>
+                <div class="empty-state glass-panel compact" th:if="${#lists.isEmpty(relatedQuotes)}">
+                    还没有通过番剧 ID 关联台词。
+                </div>
+                <article class="mini-card" th:each="quote : ${relatedQuotes}">
+                    <p class="quote-text small" th:text="${quote.content}">台词内容</p>
+                    <div class="meta-row">
+                        <span class="tag" th:if="${quote.characterName}" th:text="${quote.characterName}">角色</span>
+                        <span class="tag" th:if="${quote.tag}" th:text="${quote.tag}">标签</span>
+                    </div>
+                    <p th:if="${quote.feeling}" th:text="${quote.feeling}">感受</p>
+                    <div class="quote-video compact" th:if="${quote.hasVideoUrl()}">
+                        <video th:if="${quote.directVideoUrl}" th:src="${quote.videoUrl}" controls preload="metadata"></video>
+                        <iframe th:if="${quote.embeddableVideoUrl != null}" th:src="${quote.embeddableVideoUrl}" title="台词视频" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <a class="quote-video-link" th:if="${!quote.directVideoUrl && quote.embeddableVideoUrl == null}" th:href="${quote.videoUrl}" target="_blank" rel="noopener">打开台词视频</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

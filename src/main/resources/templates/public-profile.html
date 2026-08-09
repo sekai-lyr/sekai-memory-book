@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${publicUser.nickName != null ? publicUser.nickName + ' 的番剧回忆录' : publicUser.userName + ' 的番剧回忆录'}">番剧回忆</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<main class="public-profile">
+    <section class="public-hero">
+        <div>
+            <p class="eyebrow">PUBLIC ANIME ARCHIVE</p>
+            <h1 th:text="${publicUser.nickName != null && !#strings.isEmpty(publicUser.nickName) ? publicUser.nickName : publicUser.userName}">sekai</h1>
+            <p>这里收藏了 TA 看过的番剧、喜欢的角色、念念不忘的台词，以及一路留下来的二次元记忆。</p>
+        </div>
+        <div class="public-stats">
+            <div><strong th:text="${stats.animeCount}">0</strong><span>番剧</span></div>
+            <div><strong th:text="${stats.watchedCount}">0</strong><span>看完</span></div>
+            <div><strong th:text="${stats.characterCount}">0</strong><span>角色</span></div>
+            <div><strong th:text="${stats.quoteCount}">0</strong><span>台词</span></div>
+        </div>
+    </section>
+
+    <section class="public-band" th:if="${!#lists.isEmpty(topTags)}">
+        <span th:each="tag : ${topTags}" th:text="${tag.text}">治愈</span>
+    </section>
+
+    <section class="public-section" th:if="${!#lists.isEmpty(animeList)}">
+        <div class="section-heading">
+            <h2>代表番剧</h2>
+            <span th:text="${stats.averageScore != null ? '平均 ' + stats.averageScore + ' 分' : '尚未评分'}">平均分</span>
+        </div>
+        <div class="public-anime-grid">
+            <article th:each="anime : ${animeList}">
+                <img th:if="${anime.coverUrl != null && !#strings.isEmpty(anime.coverUrl)}" th:src="${anime.coverUrl}" alt="">
+                <div>
+                    <h3 th:text="${anime.title}">番剧</h3>
+                    <p th:text="${anime.memoryText != null && !#strings.isEmpty(anime.memoryText) ? anime.memoryText : anime.type}">记忆</p>
+                    <span th:text="${anime.score != null ? anime.score + ' 分' : anime.status}">状态</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="public-columns">
+        <div class="public-section" th:if="${!#lists.isEmpty(characterList)}">
+            <div class="section-heading"><h2>喜欢的角</h2></div>
+            <div class="public-character-list">
+                <article th:each="character : ${characterList}">
+                    <img th:if="${character.imageUrl != null && !#strings.isEmpty(character.imageUrl) && (#strings.startsWith(character.imageUrl, 'http://') || #strings.startsWith(character.imageUrl, 'https://'))}" th:src="@{/image/proxy(url=${character.imageUrl})}" alt="">
+                    <img th:if="${character.imageUrl != null && !#strings.isEmpty(character.imageUrl) && !(#strings.startsWith(character.imageUrl, 'http://') || #strings.startsWith(character.imageUrl, 'https://'))}" th:src="${character.imageUrl}" alt="">
+                    <div>
+                        <strong th:text="${character.characterName}">角色</strong>
+                        <p th:text="${character.reason}">喜欢理由</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="public-section" th:if="${!#lists.isEmpty(quoteList)}">
+            <div class="section-heading"><h2>记住的台</h2></div>
+            <div class="public-quote-list">
+                <blockquote th:each="quote : ${quoteList}">
+                    <p th:text="${quote.content}">台词</p>
+                    <cite th:text="${quote.characterName != null && !#strings.isEmpty(quote.characterName) ? quote.characterName : quote.tag}">角色</cite>
+                    <div class="quote-video compact" th:if="${quote.hasVideoUrl()}">
+                        <video th:if="${quote.directVideoUrl}" th:src="${quote.videoUrl}" controls preload="metadata"></video>
+                        <iframe th:if="${quote.embeddableVideoUrl != null}" th:src="${quote.embeddableVideoUrl}" title="台词视频" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <a class="quote-video-link" th:if="${!quote.directVideoUrl && quote.embeddableVideoUrl == null}" th:href="${quote.videoUrl}" target="_blank" rel="noopener">打开台词视频</a>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

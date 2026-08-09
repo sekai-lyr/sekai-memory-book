@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 开通 Pro</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/pro">Pro</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="checkout-head glass-panel">
+            <div>
+                <p class="eyebrow">CHOOSE YOUR ARCHIVE</p>
+                <h2>给自己的番剧回忆录一个更漂亮、更安心的保存方式。</h2>
+                <p>这里先用模拟付款验证套餐和订单流程。真实上线时，把按钮换成微信或支付宝下单，支付成功后仍然走同一套开通逻辑。</p>
+            </div>
+            <div class="checkout-proof">
+                <strong>早鸟测试价</strong>
+                <span>低价先验证付费意愿，不承诺昂贵订阅那种强运营压力。</span>
+            </div>
+        </section>
+
+        <section class="pricing-grid">
+            <article class="pricing-card">
+                <span>随手支持</span>
+                <h3>体验 Pro</h3>
+                <strong>￥3</strong>
+                <p>适合朋友、同学先试用，开通 30 天。</p>
+                <form method="post" action="/pro/activate-demo">
+                    <input type="hidden" name="planCode" value="PRO_TRIAL">
+                    <button class="primary-btn" type="submit">模拟开通 30 天</button>
+                </form>
+            </article>
+            <article class="pricing-card featured">
+                <span>推荐</span>
+                <h3>早鸟永久</h3>
+                <strong>￥9.9</strong>
+                <p>适合第一批真实用户，价格轻，不给人压力。</p>
+                <form method="post" action="/pro/activate-demo">
+                    <input type="hidden" name="planCode" value="PRO_EARLY_BIRD">
+                    <button class="primary-btn" type="submit">模拟开通永久</button>
+                </form>
+            </article>
+            <article class="pricing-card">
+                <span>多支持一点</span>
+                <h3>支持者永久</h3>
+                <strong>￥19.9</strong>
+                <p>适合喜欢这个项目、愿意支持继续更新的人。</p>
+                <form method="post" action="/pro/activate-demo">
+                    <input type="hidden" name="planCode" value="PRO_SUPPORTER">
+                    <button class="primary-btn" type="submit">模拟开通永久</button>
+                </form>
+            </article>
+        </section>
+
+        <section class="checkout-layout">
+            <section class="checkout-card glass-panel">
+                <h2>你买到的不是额度</h2>
+                <div class="checkout-plan">
+                    <div>
+                        <span>核心价值</span>
+                        <strong>省时间 + 变好看 + 更安心</strong>
+                        <p>把零散的观看截图、角色偏爱和台词记忆，整理成可以回看、可以分享、可以迁移的个人档案。</p>
+                    </div>
+                    <ul>
+                        <li>截图导入：减少手动录入</li>
+                        <li>公开展馆：让主页更值得分享</li>
+                        <li>年度长图：适合发动态</li>
+                        <li>档案体检：提醒补封面、补台词、补角色</li>
+                        <li>数据导出：长期保存更安心</li>
+                    </ul>
+                </div>
+
+                <div class="order-list" th:if="${orders != null && !#lists.isEmpty(orders)}">
+                    <h3>最近订单</h3>
+                    <div class="order-row" th:each="order : ${orders}">
+                        <span th:text="${order.orderNo}">SMB202605260001</span>
+                        <strong th:text="${order.status}">PAID</strong>
+                        <em th:text="${'￥' + order.amount + ' · ' + order.payChannel}">￥12.00 · DEMO</em>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="checkout-note">
+                <h3>上线前还差什么</h3>
+                <p>真实赚钱需要企业或个体户支付资质、支付回调验签、订单对账、客服入口和退款处理。现在这套价格适合先低成本测试用户是否愿意付费。</p>
+                <div class="legal-links">
+                    <a href="/terms">服务协议</a>
+                    <a href="/privacy">隐私说明</a>
+                    <a href="/refund">退款规则</a>
+                </div>
+            </aside>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

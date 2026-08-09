@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 批量整理</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/pro/briefing">整理台</a>
+            <a href="/pro/playlists">片单</a>
+            <a class="active" href="/pro">Pro</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="batch-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP BATCH ORGANIZER</p>
+                <h2>批量整理中心</h2>
+                <p>给重度用户准备的省时间工具：一键筛出缺封面、缺评分、缺感想、待补完和适合分享的作品，再批量改状态、批量加标签。</p>
+                <div class="quick-actions">
+                    <a class="secondary-btn" href="/pro/health">档案体检</a>
+                    <a class="secondary-btn" href="/pro/watch-plan">补番计划</a>
+                    <a class="secondary-btn" href="/pro/export/anime.csv">导出番剧 CSV</a>
+                </div>
+            </div>
+            <div class="batch-stat-card">
+                <span>当前筛选</span>
+                <strong th:text="${#lists.size(candidates)}">0</strong>
+                <p>最多展示 80 条，避免一次整理太多反而失控。</p>
+            </div>
+        </section>
+
+        <section class="batch-filter-grid">
+            <a th:classappend="${filter == 'missing'} ? 'active'" href="/pro/batch?filter=missing">
+                <span>待补全</span><strong th:text="${batchStats.missing}">0</strong>
+            </a>
+            <a th:classappend="${filter == 'cover'} ? 'active'" href="/pro/batch?filter=cover">
+                <span>缺封面</span><strong th:text="${batchStats.cover}">0</strong>
+            </a>
+            <a th:classappend="${filter == 'score'} ? 'active'" href="/pro/batch?filter=score">
+                <span>缺评分</span><strong th:text="${batchStats.score}">0</strong>
+            </a>
+            <a th:classappend="${filter == 'memory'} ? 'active'" href="/pro/batch?filter=memory">
+                <span>缺感想</span><strong th:text="${batchStats.memory}">0</strong>
+            </a>
+            <a th:classappend="${filter == 'watching'} ? 'active'" href="/pro/batch?filter=watching">
+                <span>待推进</span><strong th:text="${batchStats.watching}">0</strong>
+            </a>
+            <a th:classappend="${filter == 'shareable'} ? 'active'" href="/pro/batch?filter=shareable">
+                <span>可分享</span><strong th:text="${batchStats.shareable}">0</strong>
+            </a>
+            <a th:classappend="${filter == 'all'} ? 'active'" href="/pro/batch?filter=all">
+                <span>全部</span><strong th:text="${batchStats.all}">0</strong>
+            </a>
+        </section>
+
+        <section class="batch-actions glass-panel">
+            <form id="statusForm" method="post" action="/pro/batch/status">
+                <input type="hidden" name="filter" th:value="${filter}">
+                <label>
+                    批量改状态
+                    <select name="status">
+                        <option value="想看">想看</option>
+                        <option value="在看">在看</option>
+                        <option value="看完">看完</option>
+                        <option value="搁置">搁置</option>
+                    </select>
+                </label>
+                <button class="primary-btn" type="submit">应用到左侧勾选</button>
+            </form>
+            <form id="tagForm" method="post" action="/pro/batch/tags">
+                <input type="hidden" name="filter" th:value="${filter}">
+                <label>
+                    批量加标签
+                    <input name="tag" placeholder="例如：治愈、神作、待重看">
+                </label>
+                <button class="secondary-btn" type="submit">应用到右侧勾选</button>
+            </form>
+        </section>
+
+        <section class="batch-table" th:if="${!#lists.isEmpty(candidates)}">
+            <article class="batch-row batch-head">
+                <span>改状态</span>
+                <span>加标签</span>
+                <strong>番剧</strong>
+                <span>状态</span>
+                <span>评分</span>
+                <span>缺口</span>
+            </article>
+            <article class="batch-row" th:each="anime : ${candidates}">
+                <label><input form="statusForm" type="checkbox" name="ids" th:value="${anime.id}"></label>
+                <label><input form="tagForm" type="checkbox" name="ids" th:value="${anime.id}"></label>
+                <a th:href="@{'/anime/' + ${anime.id}}">
+                    <strong th:text="${anime.title}">番剧</strong>
+                    <small th:text="${anime.tags != null && !#strings.isEmpty(anime.tags) ? anime.tags : '暂无标签'}">标签</small>
+                </a>
+                <span th:text="${anime.status != null && !#strings.isEmpty(anime.status) ? anime.status : '未填'}">状态</span>
+                <span th:text="${anime.score != null ? anime.score : '未评'}">未评</span>
+                <p>
+                    <b th:if="${anime.coverUrl == null || #strings.isEmpty(anime.coverUrl)}">缺封面</b>
+                    <b th:if="${anime.score == null}">缺评分</b>
+                    <b th:if="${anime.memoryText == null || #strings.isEmpty(anime.memoryText)}">缺感想</b>
+                </p>
+            </article>
+        </section>
+
+        <section class="health-empty" th:if="${#lists.isEmpty(candidates)}">
+            <h3>这个筛选下没有记录</h3>
+            <p>换一个筛选条件，或者先添加更多番剧记录。</p>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

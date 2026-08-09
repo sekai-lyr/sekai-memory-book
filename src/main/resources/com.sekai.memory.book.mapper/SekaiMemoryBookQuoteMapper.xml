@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sekai.memory.book.mapper.SekaiMemoryBookQuoteMapper">
+
+    <resultMap id="BaseResultMap" type="com.sekai.memory.book.dataobject.SekaiMemoryBookQuoteDO">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="animeId" column="anime_id" />
+            <result property="characterName" column="character_name" />
+            <result property="content" column="content" />
+            <result property="feeling" column="feeling" />
+            <result property="tag" column="tag" />
+            <result property="videoUrl" column="video_url" />
+            <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,anime_id,character_name,content,feeling,
+        tag,video_url,create_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_quote
+        where  id = #{id} 
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_quote
+        where user_id = #{userId}
+        order by create_time desc, id desc
+    </select>
+
+    <select id="selectPageByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sekai_memory_book_quote
+        where user_id = #{userId}
+        order by create_time desc, id desc
+        limit #{pageSize} offset #{offset}
+    </select>
+
+    <select id="countByUserId" resultType="java.lang.Integer">
+        select count(1)
+        from sekai_memory_book_quote
+        where user_id = #{userId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sekai_memory_book_quote
+        where  id = #{id} 
+    </delete>
+
+    <delete id="deleteByIdAndUserId">
+        delete from sekai_memory_book_quote
+        where id = #{id} and user_id = #{userId}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookQuoteDO" useGeneratedKeys="true">
+        insert into sekai_memory_book_quote
+        ( id,user_id,anime_id,character_name,content,feeling,
+        tag,video_url,create_time)
+        values (#{id},#{userId},#{animeId},#{characterName},#{content},#{feeling},
+        #{tag},#{videoUrl},#{createTime})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookQuoteDO" useGeneratedKeys="true">
+        insert into sekai_memory_book_quote
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="userId != null">user_id,</if>
+                <if test="animeId != null">anime_id,</if>
+                <if test="characterName != null">character_name,</if>
+                <if test="content != null">content,</if>
+                <if test="feeling != null">feeling,</if>
+                <if test="tag != null">tag,</if>
+                <if test="videoUrl != null">video_url,</if>
+                <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id},</if>
+                <if test="userId != null">#{userId},</if>
+                <if test="animeId != null">#{animeId},</if>
+                <if test="characterName != null">#{characterName},</if>
+                <if test="content != null">#{content},</if>
+                <if test="feeling != null">#{feeling},</if>
+                <if test="tag != null">#{tag},</if>
+                <if test="videoUrl != null">#{videoUrl},</if>
+                <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookQuoteDO">
+        update sekai_memory_book_quote
+        <set>
+                <if test="userId != null">
+                    user_id = #{userId},
+                </if>
+                <if test="animeId != null">
+                    anime_id = #{animeId},
+                </if>
+                <if test="characterName != null">
+                    character_name = #{characterName},
+                </if>
+                <if test="content != null">
+                    content = #{content},
+                </if>
+                <if test="feeling != null">
+                    feeling = #{feeling},
+                </if>
+                <if test="tag != null">
+                    tag = #{tag},
+                </if>
+                <if test="videoUrl != null">
+                    video_url = #{videoUrl},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime},
+                </if>
+        </set>
+        where   id = #{id} 
+    </update>
+    <update id="updateByIdAndUserId" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookQuoteDO">
+        update sekai_memory_book_quote
+        set
+            anime_id = #{animeId},
+            character_name = #{characterName},
+            content = #{content},
+            feeling = #{feeling},
+            tag = #{tag},
+            video_url = #{videoUrl}
+        where id = #{id} and user_id = #{userId}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookQuoteDO">
+        update sekai_memory_book_quote
+        set 
+            user_id =  #{userId},
+            anime_id =  #{animeId},
+            character_name =  #{characterName},
+            content =  #{content},
+            feeling =  #{feeling},
+            tag =  #{tag},
+            video_url =  #{videoUrl},
+            create_time =  #{createTime}
+        where   id = #{id} 
+    </update>
+</mapper>

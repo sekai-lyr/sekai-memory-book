@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 回忆资产工作台</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/pro">VIP</a>
+            <a class="active" href="/pro/asset-lab">资产工作台</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="briefing-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP ASSET LAB</p>
+                <h2>回忆资产工作台</h2>
+                <p>自动给每部番剧计算档案完成度、分享价值和下一步补全建议。它的定位是把“记事本”升级成可运营、可展示、可售卖的番剧档案库。</p>
+                <div class="quick-actions">
+                    <a class="secondary-btn" href="/pro/health">档案体检</a>
+                    <a class="secondary-btn" href="/pro/batch">批量整理</a>
+                    <a class="secondary-btn" href="/pro/playlists">主题片单</a>
+                    <a class="secondary-btn" th:href="@{'/u/' + ${loginUser.userName}}">公开展馆</a>
+                </div>
+            </div>
+            <div class="briefing-next-card">
+                <span>高价值档案</span>
+                <strong th:text="${premiumCount + ' 部'}">0 部</strong>
+                <p th:text="${fixCount + ' 部还可以继续补全，补完后更适合拿去展示和成交。'}">0 部还可以继续补全。</p>
+            </div>
+        </section>
+
+        <section class="briefing-goals">
+            <article>
+                <span>总番剧</span>
+                <strong th:text="${stats.animeCount}">0</strong>
+                <p>所有会参与资产评分的番剧档案。</p>
+            </article>
+            <article>
+                <span>可出售级</span>
+                <strong th:text="${premiumCount}">0</strong>
+                <p>完成度 80% 以上，可以作为展示样板。</p>
+            </article>
+            <article>
+                <span>待补全</span>
+                <strong th:text="${fixCount}">0</strong>
+                <p>缺封面、短评、角色或台词的记录。</p>
+            </article>
+            <article>
+                <span>内容资产</span>
+                <strong th:text="${stats.characterCount + stats.quoteCount}">0</strong>
+                <p>角色和台词越多，项目越不像普通记事本。</p>
+            </article>
+        </section>
+
+        <section class="briefing-grid">
+            <article class="briefing-panel wide" th:each="item : ${assetInsights}">
+                <div class="section-heading">
+                    <div>
+                        <h3 th:text="${item.anime.title}">番剧标题</h3>
+                        <p th:text="${item.level + ' / 完成度 ' + item.score + '%'}">可分享级 / 完成度 70%</p>
+                    </div>
+                    <a th:href="${item.actionHref}">编辑档案</a>
+                </div>
+                <div class="batch-row" style="grid-template-columns: 90px minmax(0, 1fr) minmax(220px, 0.8fr);">
+                    <strong th:text="${item.score + '%'}">80%</strong>
+                    <div>
+                        <p>
+                            <b th:each="strength : ${item.strengths}" th:text="${strength}">有封面</b>
+                        </p>
+                        <small th:text="${'角色 ' + item.characterCount + ' / 台词 ' + item.quoteCount}">角色 0 / 台词 0</small>
+                    </div>
+                    <p th:if="${!#lists.isEmpty(item.gaps)}">
+                        <b th:each="gap : ${item.gaps}" th:text="${gap}">补评分</b>
+                    </p>
+                    <p th:if="${#lists.isEmpty(item.gaps)}">这条档案已经很完整，可以优先放到公开页和销售演示里。</p>
+                </div>
+                <div class="playlist-copy">
+                    <strong>可复制文案：</strong>
+                    <span th:text="${item.shareCopy}">分享文案</span>
+                </div>
+            </article>
+
+            <article class="briefing-panel wide" th:if="${#lists.isEmpty(assetInsights)}">
+                <div class="empty-state compact">还没有番剧记录。先添加几部番剧，VIP 工作台才有素材可以分析。</div>
+            </article>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

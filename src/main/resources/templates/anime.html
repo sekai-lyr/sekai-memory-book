@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 番剧</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home"><h1>Sekai Memory Book</h1><p>番剧回忆录</p></a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a class="active" href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/advanced">高级功能</a>
+            <a href="/search">搜索</a>
+            <a href="/image-lab">图片实验室</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="page-title glass-panel">
+            <p class="eyebrow">ANIME ARCHIVE</p>
+            <h2>番剧档案</h2>
+            <p>记录追番进度、评分、标签和观后感。以后再看到标题，记忆会自己亮起来。</p>
+        </section>
+
+        <div class="content-grid">
+            <form class="form-card" action="/anime/add" method="post">
+                <input type="hidden" name="returnTo" th:value="@{/anime(keyword=${keyword}, page=${currentPage})}">
+                <h3>添加番剧</h3>
+                <div class="server-message success" th:if="${message}" th:text="${message}"></div>
+                <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+                <div class="form-group"><label for="title">番剧标题</label><input id="title" name="title" type="text" placeholder="例如 Lycoris Recoil" required></div>
+                <div class="form-group"><label for="type">类型</label><input id="type" name="type" type="text" placeholder="日常 / 恋爱 / 战斗"></div>
+                <div class="form-group"><label for="tags">标签</label><input id="tags" name="tags" type="text" placeholder="治愈,热血,校园"></div>
+                <div class="form-group">
+                    <label for="status">观看状态</label>
+                    <select id="status" name="status">
+                        <option value="想看">想看</option>
+                        <option value="在看">在看</option>
+                        <option value="看完" selected>看完</option>
+                        <option value="搁置">搁置</option>
+                    </select>
+                </div>
+                <div class="form-group"><label for="score">评分</label><input id="score" name="score" type="number" min="0" max="10" step="0.1" placeholder="0.0 - 10.0"></div>
+                <div class="form-group"><label for="coverUrl">封面 URL</label><input id="coverUrl" name="coverUrl" type="url" placeholder="https://..."></div>
+                <div class="form-group"><label for="watchDate">观看日期</label><input id="watchDate" name="watchDate" type="date"></div>
+                <div class="form-group"><label for="releaseDate">上映/开播日期</label><input id="releaseDate" name="releaseDate" type="date" data-watch-date-target="watchDate"></div>
+                <div class="form-row">
+                    <div class="form-group"><label for="currentEpisode">当前集数</label><input id="currentEpisode" name="currentEpisode" type="number" min="0" placeholder="0"></div>
+                    <div class="form-group"><label for="totalEpisodes">总集数</label><input id="totalEpisodes" name="totalEpisodes" type="number" min="0" placeholder="12"></div>
+                </div>
+                <div class="form-group"><label for="lastWatchDate">最近观看日期</label><input id="lastWatchDate" name="lastWatchDate" type="date"></div>
+                <div class="form-group"><label for="memoryText">回忆笔记</label><textarea id="memoryText" name="memoryText" placeholder="写下这部番剧留给你的感觉"></textarea></div>
+                <button class="primary-btn" type="submit">保存番剧</button>
+            </form>
+
+            <section class="list-panel">
+                <form class="toolbar glass-panel" action="/anime" method="get">
+                    <input name="keyword" type="search" th:value="${keyword}" placeholder="搜索标题、类型、标签或观后感">
+                    <button class="secondary-btn" type="submit">搜索</button>
+                    <button class="secondary-btn" type="submit" name="autoSort" value="true">自动排序</button>
+                    <a class="secondary-btn" href="/anime">清空</a>
+                    <span class="toolbar-count" th:text="'共 ' + ${totalCount} + ' 条'">共 0 条</span>
+                </form>
+                <div class="server-message success" th:if="${autoSortActive}">已按上映/开播日期重新排序，后续新增番剧也会按这个规则归位。</div>
+
+                <div class="empty-state glass-panel" th:if="${#lists.isEmpty(animeList)}">还没有番剧记录，先添加一部吧。</div>
+
+                <article class="timeline-card archive-card" th:each="anime : ${animeList}">
+                    <div class="timeline-image archive-image">
+                        <img th:if="${anime.coverUrl != null && !#strings.isEmpty(anime.coverUrl)}" th:src="${anime.coverUrl}" alt="番剧封面" onerror="this.remove()">
+                    </div>
+                    <div class="timeline-copy archive-copy">
+                        <div class="timeline-topline"><span class="tag">番剧</span><time th:if="${anime.releaseDate}" th:text="${anime.releaseDate}">日期</time></div>
+                        <h3 th:text="${anime.title}">番剧标题</h3>
+                        <div class="meta-row">
+                            <span class="tag" th:if="${anime.type}" th:text="${anime.type}">类型</span>
+                            <span class="tag" th:if="${anime.status}" th:text="${anime.status}">状态</span>
+                            <span class="tag" th:if="${anime.score}" th:text="${anime.score + ' 分'}">评分</span>
+                            <span class="tag" th:if="${anime.watchDate}" th:text="${anime.watchDate}">观看日期</span>
+                        </div>
+                        <div class="meta-row" th:if="${anime.tags}">
+                            <a class="tag tag-link" th:each="tag : ${#strings.arraySplit(anime.tags, ',')}" th:href="@{/anime(keyword=${#strings.trim(tag)})}" th:text="${#strings.trim(tag)}">标签</a>
+                        </div>
+                        <p th:if="${anime.memoryText}" th:text="${anime.memoryText}">回忆笔记</p>
+                        <div class="progress-card" th:if="${anime.totalEpisodes != null && anime.totalEpisodes > 0}">
+                            <div class="progress-head">
+                                <strong>观看进度</strong>
+                                <span th:text="${(anime.currentEpisode != null ? anime.currentEpisode : 0) + ' / ' + anime.totalEpisodes + ' 集'}">0 / 12 集</span>
+                            </div>
+                            <div class="month-track"><div class="month-fill" th:style="${'width:' + (((anime.currentEpisode != null ? anime.currentEpisode : 0) * 100) / anime.totalEpisodes) + '%'}"></div></div>
+                            <p th:if="${anime.lastWatchDate}" th:text="'最近观看：' + ${anime.lastWatchDate}">最近观看</p>
+                        </div>
+
+                        <details class="edit-panel">
+                            <summary>编辑</summary>
+                            <form th:action="@{'/anime/update/' + ${anime.id}}" method="post">
+                                <input type="hidden" name="returnTo" th:value="@{/anime(keyword=${keyword}, page=${currentPage})}">
+                                <div class="form-group"><label th:for="'edit-title-' + ${anime.id}">番剧标题</label><input th:id="'edit-title-' + ${anime.id}" name="title" type="text" th:value="${anime.title}" required></div>
+                                <div class="form-group"><label th:for="'edit-type-' + ${anime.id}">类型</label><input th:id="'edit-type-' + ${anime.id}" name="type" type="text" th:value="${anime.type}"></div>
+                                <div class="form-group"><label th:for="'edit-tags-' + ${anime.id}">标签</label><input th:id="'edit-tags-' + ${anime.id}" name="tags" type="text" th:value="${anime.tags}"></div>
+                                <div class="form-group">
+                                    <label th:for="'edit-status-' + ${anime.id}">观看状态</label>
+                                    <select th:id="'edit-status-' + ${anime.id}" name="status">
+                                        <option value="想看" th:selected="${anime.status == '想看'}">想看</option>
+                                        <option value="在看" th:selected="${anime.status == '在看'}">在看</option>
+                                        <option value="看完" th:selected="${anime.status == '看完'}">看完</option>
+                                        <option value="搁置" th:selected="${anime.status == '搁置'}">搁置</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label th:for="'edit-score-' + ${anime.id}">评分</label><input th:id="'edit-score-' + ${anime.id}" name="score" type="number" min="0" max="10" step="0.1" th:value="${anime.score}"></div>
+                                <div class="form-group"><label th:for="'edit-cover-' + ${anime.id}">封面 URL</label><input th:id="'edit-cover-' + ${anime.id}" name="coverUrl" type="url" th:value="${anime.coverUrl}"></div>
+                                <div class="form-group"><label th:for="'edit-date-' + ${anime.id}">观看日期</label><input th:id="'edit-date-' + ${anime.id}" name="watchDate" type="date" th:value="${anime.watchDate}"></div>
+                                <div class="form-group"><label th:for="'edit-release-' + ${anime.id}">上映/开播日期</label><input th:id="'edit-release-' + ${anime.id}" name="releaseDate" type="date" th:value="${anime.releaseDate}" th:attr="data-watch-date-target=${'edit-date-' + anime.id}"></div>
+                                <div class="form-row">
+                                    <div class="form-group"><label th:for="'edit-current-' + ${anime.id}">当前集数</label><input th:id="'edit-current-' + ${anime.id}" name="currentEpisode" type="number" min="0" th:value="${anime.currentEpisode}"></div>
+                                    <div class="form-group"><label th:for="'edit-total-' + ${anime.id}">总集数</label><input th:id="'edit-total-' + ${anime.id}" name="totalEpisodes" type="number" min="0" th:value="${anime.totalEpisodes}"></div>
+                                </div>
+                                <div class="form-group"><label th:for="'edit-last-watch-' + ${anime.id}">最近观看日期</label><input th:id="'edit-last-watch-' + ${anime.id}" name="lastWatchDate" type="date" th:value="${anime.lastWatchDate}"></div>
+                                <div class="form-group"><label th:for="'edit-memory-' + ${anime.id}">回忆笔记</label><textarea th:id="'edit-memory-' + ${anime.id}" name="memoryText" th:text="${anime.memoryText}"></textarea></div>
+                                <button class="primary-btn" type="submit">保存修改</button>
+                            </form>
+                        </details>
+
+                        <div class="card-actions">
+                            <a class="secondary-btn" th:href="@{'/anime/' + ${anime.id}}">详情</a>
+                            <form th:action="@{'/anime/delete/' + ${anime.id}}" method="post">
+                                <input type="hidden" name="returnTo" th:value="@{/anime(keyword=${keyword}, page=${currentPage})}">
+                                <button class="danger-btn" type="submit">删除</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+
+                <nav class="pagination" th:if="${totalPages > 1}">
+                    <a class="secondary-btn" th:classappend="${currentPage == 1} ? ' disabled'" th:href="@{/anime(keyword=${keyword}, page=${currentPage - 1})}">上一页</a>
+                    <span th:text="${currentPage + ' / ' + totalPages}">1 / 1</span>
+                    <form class="page-jump-form" action="/anime" method="get">
+                        <input type="hidden" name="keyword" th:value="${keyword}">
+                        <label for="animePageJump">跳到</label>
+                        <select id="animePageJump" name="page" onchange="this.form.submit()">
+                            <option th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                                    th:value="${pageNumber}"
+                                    th:selected="${pageNumber == currentPage}"
+                                    th:text="${pageNumber + ' 页'}">1 页</option>
+                        </select>
+                    </form>
+                    <a class="secondary-btn" th:classappend="${currentPage == totalPages} ? ' disabled'" th:href="@{/anime(keyword=${keyword}, page=${currentPage + 1})}">下一页</a>
+                </nav>
+            </section>
+        </div>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+<script>
+    document.querySelectorAll("[data-watch-date-target]").forEach(function (releaseInput) {
+        var watchInput = document.getElementById(releaseInput.dataset.watchDateTarget);
+        if (!watchInput) {
+            return;
+        }
+        var syncWatchDate = function () {
+            if (releaseInput.value) {
+                watchInput.value = releaseInput.value;
+            }
+        };
+        releaseInput.addEventListener("input", syncWatchDate);
+        releaseInput.addEventListener("change", syncWatchDate);
+        syncWatchDate();
+    });
+</script>
+</body>
+</html>

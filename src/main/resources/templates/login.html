@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 登录</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="/css/login.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<main class="login-page">
+    <section class="brand-area">
+        <div class="brand-title">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </div>
+        <div class="brand-slogan">
+            <p>记录番剧、角色、台词和那些被治愈过的瞬间。</p>
+            <p>把属于你的二次元记忆，认真收藏起来。</p>
+        </div>
+    </section>
+
+    <section class="form-area">
+        <div class="login-card">
+            <div class="card-header">
+                <div class="flower">Sakura</div>
+                <h2>欢迎回来</h2>
+                <p>登录你的番剧回忆录</p>
+            </div>
+
+            <div class="server-message success" th:if="${message}" th:text="${message}"></div>
+            <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+
+            <form id="loginForm" th:action="@{/user/login}" action="/user/login" method="post">
+                <div class="form-group">
+                    <label for="userName">用户名</label>
+                    <div class="input-box">
+                        <span class="input-icon">ID</span>
+                        <input type="text" id="userName" name="userName" placeholder="请输入用户名" autocomplete="username" required>
+                    </div>
+                    <div class="error-text" id="userNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <div class="input-box">
+                        <span class="input-icon">PW</span>
+                        <input type="password" id="password" name="password" placeholder="请输入密码" autocomplete="current-password" required>
+                        <button class="ghost-toggle" type="button" id="togglePassword">显示</button>
+                    </div>
+                    <div class="error-text" id="passwordError"></div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-box">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <span>记住我</span>
+                    </label>
+                    <a th:href="@{/forgot-password}" href="/forgot-password" class="forgot-link">忘记密码？</a>
+                </div>
+
+                <button type="submit" class="login-btn">登录</button>
+                <a th:href="@{/register}" href="/register" class="register-btn">去注册</a>
+
+                <div class="bottom-tip">
+                    还没有账号？
+                    <a th:href="@{/register}" href="/register">立即注册</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        © 2026 Sekai Memory Book
+        <span>|</span>
+        私人回忆收藏馆
+    </footer>
+</main>
+<script th:src="@{/js/login.js}" src="/js/login.js"></script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 高级功能</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a class="active" href="/advanced">高级功能</a>
+            <a href="/search">搜索</a>
+            <a href="/image-lab">图片工具</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">旅人</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="page-title glass-panel">
+            <p class="eyebrow">ADVANCED MEMORY LAB</p>
+            <h2>高级功能实验</h2>
+            <p>关系图谱、追番进度、AI 整理、情绪地图和分享卡片都在这里。它们先基于现有数据运行，不需要改数据库。</p>
+        </section>
+
+        <section class="lab-grid">
+            <article class="lab-panel graph-panel">
+                <div class="section-heading">
+                    <h3>番剧关系图谱</h3>
+                    <span th:text="${#lists.size(animeList) + ' 部番剧'}">0 部番剧</span>
+                </div>
+                <div class="graph-board">
+                    <div class="graph-anime" th:each="anime : ${animeList}">
+                        <a th:href="@{'/anime/' + ${anime.id}}" th:text="${anime.title}">番剧</a>
+                        <div class="meta-row" th:if="${anime.tags}">
+                            <span class="tag" th:each="tag : ${#strings.arraySplit(anime.tags, ',')}" th:text="${#strings.trim(tag)}">标签</span>
+                        </div>
+                        <div class="graph-links">
+                            <span th:each="character : ${characterList}"
+                                  th:if="${character.animeId == anime.id}"
+                                  th:text="${character.characterName}">角色</span>
+                            <span th:each="quote : ${quoteList}"
+                                  th:if="${quote.animeId == anime.id}"
+                                  th:text="${quote.characterName != null && !#strings.isEmpty(quote.characterName) ? quote.characterName + ' 的台词' : '台词'}">台词</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="empty-state compact" th:if="${#lists.isEmpty(animeList)}">先添加番剧后，关系图谱会自动生成</div>
+            </article>
+
+            <article class="lab-panel">
+                <div class="section-heading">
+                    <h3>追番进度</h3>
+                    <span th:text="${#lists.size(insights.continueWatching) + ' 个继续观看'}">0 个继续观看</span>
+                </div>
+                <div class="progress-lanes">
+                    <div class="progress-lane" th:each="lane : ${insights.progressLanes}">
+                        <div class="progress-head">
+                            <strong th:text="${lane.status}">在看</strong>
+                            <span th:text="${lane.count + ' 部'}">0 部</span>
+                        </div>
+                        <div class="month-track"><div class="month-fill" th:style="${'width:' + lane.percent + '%'}"></div></div>
+                        <div class="lane-items">
+                            <a th:each="anime : ${lane.animeList}" th:href="@{'/anime/' + ${anime.id}}" th:text="${anime.title}">番剧</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lab-panel recommendation-panel">
+                <div class="section-heading">
+                    <h3>智能下一部推荐</h3>
+                    <span th:text="${#lists.size(insights.recommendations) + ' 个候选'}">0 个候选</span>
+                </div>
+                <div class="recommendation-list" th:if="${!#lists.isEmpty(insights.recommendations)}">
+                    <a class="recommendation-card" th:each="recommendation : ${insights.recommendations}" th:href="@{'/anime/' + ${recommendation.anime.id}}">
+                        <div class="recommendation-score">
+                            <strong th:text="${recommendation.matchScore}">88</strong>
+                            <span>匹配</span>
+                        </div>
+                        <div>
+                            <h4 th:text="${recommendation.anime.title}">番剧名称</h4>
+                            <p th:text="${recommendation.reason}">推荐理由</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="empty-state compact" th:if="${#lists.isEmpty(insights.recommendations)}">高分作品、标签和“想看/在看”记录越多，推荐会越准。</div>
+            </article>
+
+            <article class="lab-panel">
+                <div class="section-heading">
+                    <h3>记忆补全任务</h3>
+                    <span th:text="${#lists.size(insights.actionItems) + ' 项待处理'}">0 项待处理</span>
+                </div>
+                <div class="action-list" th:if="${!#lists.isEmpty(insights.actionItems)}">
+                    <a class="action-item" th:each="item : ${insights.actionItems}" th:href="${item.href}" th:classappend="${item.level}">
+                        <strong th:text="${item.title}">补封面</strong>
+                        <p th:text="${item.detail}">任务详情</p>
+                    </a>
+                </div>
+                <div class="empty-state compact" th:if="${#lists.isEmpty(insights.actionItems)}">当前档案很完整，暂时没有需要补齐的地方。</div>
+            </article>
+
+            <article class="lab-panel">
+                <div class="section-heading">
+                    <h3>评分分布</h3>
+                    <span>口味雷达</span>
+                </div>
+                <div class="score-band-list">
+                    <div class="score-band-row" th:each="band : ${insights.scoreBands}">
+                        <span th:text="${band.label}">9 分以</span>
+                        <div class="month-track"><div class="month-fill" th:style="${'width:' + band.percent + '%'}"></div></div>
+                        <strong th:text="${band.count}">0</strong>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lab-panel ai-panel">
+                <div class="section-heading">
+                    <h3>AI 观后感整理</h3>
+                    <span>本地规则版</span>
+                </div>
+                <textarea id="aiInput" placeholder="把观后感粘到这里，例如：这部番很治愈，夏天感很强，结尾有点想哭。"></textarea>
+                <button class="primary-btn" type="button" onclick="analyzeMemory()">整理</button>
+                <div class="ai-result" id="aiResult">
+                    <strong>等待整理</strong>
+                    <p>会自动给出情绪标签和建议评分</p>
+                </div>
+            </article>
+
+            <article class="lab-panel">
+                <div class="section-heading">
+                    <h3>情绪地图</h3>
+                    <span th:text="${#lists.isEmpty(insights.emotionRanks) ? '暂无情绪' : insights.emotionRanks[0].text}">暂无情绪</span>
+                </div>
+                <div class="emotion-list" th:if="${!#lists.isEmpty(insights.emotionRanks)}">
+                    <div class="emotion-row" th:each="emotion : ${insights.emotionRanks}">
+                        <span th:text="${emotion.text}">治愈</span>
+                        <div class="month-track"><div class="month-fill" th:style="${'width:' + emotion.percent + '%'}"></div></div>
+                        <strong th:text="${emotion.count}">1</strong>
+                    </div>
+                </div>
+                <div class="empty-state compact" th:if="${#lists.isEmpty(insights.emotionRanks)}">在标签、台词感受或观后感里写下情绪词后，这里会自动汇总。</div>
+            </article>
+
+            <article class="lab-panel share-list-panel">
+                <div class="section-heading">
+                    <h3>公开分享卡片</h3>
+                    <span>生成只读页面</span>
+                </div>
+                <div class="share-card-grid" th:if="${!#lists.isEmpty(insights.shareCandidates)}">
+                    <a class="share-mini-card" th:each="anime : ${insights.shareCandidates}" th:href="@{'/share/anime/' + ${anime.id}}">
+                        <img th:if="${anime.coverUrl != null && !#strings.isEmpty(anime.coverUrl)}" th:src="${anime.coverUrl}" alt="分享封面" onerror="this.remove()">
+                        <strong th:text="${anime.title}">番剧</strong>
+                        <span th:text="${anime.score != null ? anime.score + ' 分' : '未评分'}">未评分</span>
+                    </a>
+                </div>
+                <div class="empty-state compact" th:if="${#lists.isEmpty(insights.shareCandidates)}">有封面图的番剧会出现在这里</div>
+            </article>
+        </section>
+    </main>
+</div>
+
+<script>
+function analyzeMemory() {
+    const text = document.getElementById("aiInput").value.trim();
+    const result = document.getElementById("aiResult");
+    if (!text) {
+        result.innerHTML = "<strong>还没有内容</strong><p>先写一段观后感再整理。</p>";
+        return;
+    }
+    const rules = [
+        { emotion: "治愈", tag: "治愈", words: ["治愈", "温柔", "安心", "舒服", "温暖"], score: 8.8 },
+        { emotion: "燃", tag: "热血", words: ["燃", "热血", "激动", "震撼", "爽"], score: 8.6 },
+        { emotion: "甜", tag: "恋爱", words: ["甜", "恋爱", "心动", "可爱", "糖"], score: 8.4 },
+        { emotion: "刀", tag: "催泪", words: ["刀", "哭", "泪", "难过", "虐"], score: 8.2 },
+        { emotion: "压抑", tag: "沉重", words: ["压抑", "黑暗", "绝望", "沉重"], score: 7.9 },
+        { emotion: "怀旧", tag: "青春", words: ["怀旧", "青春", "回忆", "夏天"], score: 8.5 }
+    ];
+    const matched = rules.filter(rule => rule.words.some(word => text.includes(word)));
+    const emotions = matched.map(rule => rule.emotion);
+    const tags = matched.map(rule => rule.tag);
+    const score = matched.length ? (matched.reduce((sum, rule) => sum + rule.score, 0) / matched.length).toFixed(1) : "8.0";
+    result.innerHTML = `
+        <strong>${emotions.length ? emotions.join(" / ") : "日常记录"}</strong>
+        <p>建议标签：${tags.length ? tags.join("、") : "观后感、私人记忆"}</p>
+        <p>建议评分：${score} 分</p>
+        <p>短评：${text.length > 46 ? text.slice(0, 46) + "..." : text}</p>
+    `;
+}
+</script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

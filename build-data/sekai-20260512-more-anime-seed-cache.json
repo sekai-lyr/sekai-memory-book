@@ -1,0 +1,1486 @@
+﻿{
+    "generatedAt":  "2026-05-12T20:07:37",
+    "anime":  [
+                  {
+                      "Title":  "烟花",
+                      "Type":  "日本/动画,剧情",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/10/86521l.jpg",
+                      "Release":  "2017-08-18",
+                      "Episodes":  1,
+                      "Tags":  "动画,剧情",
+                      "Source":  "https://myanimelist.net/anime/34498/Uchiage_Hanabi_Shita_kara_Miru_ka_Yoko_kara_Miru_ka",
+                      "MalId":  34498
+                  },
+                  {
+                      "Title":  "刀剑神域：序列之争剧场版",
+                      "Type":  "日本/科幻,动作,动画",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1557/123313l.jpg",
+                      "Release":  "2017-02-18",
+                      "Episodes":  1,
+                      "Tags":  "科幻,动作,动画",
+                      "Source":  "https://myanimelist.net/anime/31765/Sword_Art_Online_Movie__Ordinal_Scale",
+                      "MalId":  31765
+                  },
+                  {
+                      "Title":  "BanG Dream! Episode of Roselia I: 约定",
+                      "Type":  "日本/动画,青春,音乐",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1867/119189l.jpg",
+                      "Release":  "2021-04-23",
+                      "Episodes":  1,
+                      "Tags":  "动画,青春,音乐",
+                      "Source":  "https://myanimelist.net/anime/41780/BanG_Dream_Movie__Episode_of_Roselia_-_I__Yakusoku",
+                      "MalId":  41780
+                  },
+                  {
+                      "Title":  "黑子的篮球剧场版：LAST GAME",
+                      "Type":  "日本/动作,动画,运动",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/2/83106l.jpg",
+                      "Release":  "2017-03-18",
+                      "Episodes":  1,
+                      "Tags":  "动作,动画,运动",
+                      "Source":  "https://myanimelist.net/anime/31658/Kuroko_no_Basket_Movie_4__Last_Game",
+                      "MalId":  31658
+                  },
+                  {
+                      "Title":  "轻音少女",
+                      "Type":  "日本/搞笑,冒险,青春,校园,治愈,励志,美少女",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/10/76120l.jpg",
+                      "Release":  "2009-04-03",
+                      "Episodes":  14,
+                      "Tags":  "搞笑,青春,校园,治愈,音乐",
+                      "Source":  "https://myanimelist.net/anime/5680/K-On",
+                      "MalId":  5680
+                  },
+                  {
+                      "Title":  "轻音少女 第二季",
+                      "Type":  "日本/搞笑,冒险,青春,校园,治愈,励志,美少女",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/10/76120l.jpg",
+                      "Release":  "2010-04-07",
+                      "Episodes":  27,
+                      "Tags":  "搞笑,青春,校园,治愈,音乐",
+                      "Source":  "https://myanimelist.net/anime/5680/K-On",
+                      "MalId":  5680
+                  },
+                  {
+                      "Title":  "轻音少女 剧场版",
+                      "Type":  "日本/爱情,动画,青春",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/5/76233l.jpg",
+                      "Release":  "2011-12-03",
+                      "Episodes":  1,
+                      "Tags":  "动画,青春,音乐",
+                      "Source":  "https://myanimelist.net/anime/9617/K-On_Movie",
+                      "MalId":  9617
+                  },
+                  {
+                      "Title":  "孤独摇滚！",
+                      "Type":  "日本/奇幻",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1448/127956l.jpg",
+                      "Release":  "2022-10-09",
+                      "Episodes":  12,
+                      "Tags":  "音乐,搞笑,日常,青春",
+                      "Source":  "https://myanimelist.net/anime/47917/Bocchi_the_Rock",
+                      "MalId":  47917
+                  },
+                  {
+                      "Title":  "吹响！上低音号",
+                      "Type":  "日本/校园,治愈,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1517/142072l.jpg",
+                      "Release":  "2015-04-08",
+                      "Episodes":  13,
+                      "Tags":  "校园,治愈,励志,音乐",
+                      "Source":  "https://myanimelist.net/anime/27989/Hibike_Euphonium",
+                      "MalId":  27989
+                  },
+                  {
+                      "Title":  "吹响！上低音号第二季",
+                      "Type":  "日本/校园,治愈,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/10/81155l.jpg",
+                      "Release":  "2016-10-06",
+                      "Episodes":  13,
+                      "Tags":  "校园,治愈,励志,音乐",
+                      "Source":  "https://myanimelist.net/anime/31988/Hibike_Euphonium_2",
+                      "MalId":  31988
+                  },
+                  {
+                      "Title":  "吹响！上低音号第三季",
+                      "Type":  "日本/日常,校园,百合,青春,励志",
+                      "Score":  "1.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1216/142086l.jpg",
+                      "Release":  "2024-04-07",
+                      "Episodes":  13,
+                      "Tags":  "日常,校园,百合,青春,励志,音乐",
+                      "Source":  "https://myanimelist.net/anime/39894/Hibike_Euphonium_3",
+                      "MalId":  39894
+                  },
+                  {
+                      "Title":  "吹响！上低音号剧场版合集",
+                      "Type":  "日本/校园,治愈,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/8/81156l.jpg",
+                      "Release":  "2016-04-23",
+                      "Episodes":  4,
+                      "Tags":  "校园,治愈,励志,音乐,剧场版",
+                      "Source":  "https://myanimelist.net/anime/31989/Hibike_Euphonium_Movie_1__Kitauji_Koukou_Suisougaku-bu_e_Youkoso",
+                      "MalId":  31989
+                  },
+                  {
+                      "Title":  "金牌得主",
+                      "Type":  "日本/运动,励志,竞技,漫画改,热血,萝莉",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1029/146850l.jpg",
+                      "Release":  "2025-01-05",
+                      "Episodes":  13,
+                      "Tags":  "运动,励志,竞技,热血",
+                      "Source":  "https://myanimelist.net/anime/55318/Medalist",
+                      "MalId":  55318
+                  },
+                  {
+                      "Title":  "金牌得主 第二季",
+                      "Type":  "日本/热血,竞技,励志,运动,萝莉,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1828/155038l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  9,
+                      "Tags":  "运动,励志,竞技,热血",
+                      "Source":  "https://myanimelist.net/anime/61335/Medalist_2nd_Season",
+                      "MalId":  61335
+                  },
+                  {
+                      "Title":  "想吃掉我的非人少女",
+                      "Type":  "日本/奇幻,百合,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1191/152368l.jpg",
+                      "Release":  "2025-10-02",
+                      "Episodes":  13,
+                      "Tags":  "奇幻,百合,漫画改",
+                      "Source":  "https://myanimelist.net/anime/60168/Watashi_wo_Tabetai_Hitodenashi",
+                      "MalId":  60168
+                  },
+                  {
+                      "Title":  "关于我在无意间被隔壁的天使变成废柴这件事",
+                      "Type":  "日本/恋爱,校园",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1240/133638l.jpg",
+                      "Release":  "2023-01-07",
+                      "Episodes":  12,
+                      "Tags":  "恋爱,校园,日常",
+                      "Source":  "https://myanimelist.net/anime/50739/Otonari_no_Tenshi-sama_ni_Itsunomanika_Dame_Ningen_ni_Sareteita_Ken",
+                      "MalId":  50739
+                  },
+                  {
+                      "Title":  "关于我在无意间被隔壁的天使变成废柴这件事 第二季",
+                      "Type":  "日本/校园,日常,恋爱,轻小说改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1989/154843l.jpg",
+                      "Release":  "2026-04-03",
+                      "Episodes":  6,
+                      "Tags":  "校园,日常,恋爱,轻小说改",
+                      "Source":  "https://myanimelist.net/anime/56876/Otonari_no_Tenshi-sama_ni_Itsunomanika_Dame_Ningen_ni_Sareteita_Ken_2",
+                      "MalId":  56876
+                  },
+                  {
+                      "Title":  "欢迎来到实力至上主义教室第四季",
+                      "Type":  "日本/校园,后宫,恋爱,轻小说改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1176/153626l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  9,
+                      "Tags":  "校园,后宫,恋爱,轻小说改",
+                      "Source":  "https://myanimelist.net/anime/59708/Youkoso_Jitsuryoku_Shijou_Shugi_no_Kyoushitsu_e_4th_Season__2-nensei-hen_1_Gakki",
+                      "MalId":  59708
+                  },
+                  {
+                      "Title":  "咒术回战 第三季",
+                      "Type":  "日本/奇幻,热血,战斗,搞笑,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1171/109222l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  12,
+                      "Tags":  "奇幻,热血,战斗,漫画改",
+                      "Source":  "https://myanimelist.net/anime/40748/Jujutsu_Kaisen",
+                      "MalId":  40748
+                  },
+                  {
+                      "Title":  "杖与剑的魔剑谭 第二季",
+                      "Type":  "日本/奇幻,热血,战斗,异世界,后宫,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1190/155788l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  5,
+                      "Tags":  "奇幻,热血,战斗,漫画改",
+                      "Source":  "https://myanimelist.net/anime/59983/Tsue_to_Tsurugi_no_Wistoria_Season_2",
+                      "MalId":  59983
+                  },
+                  {
+                      "Title":  "夜樱家的大作战 第二季",
+                      "Type":  "日本/搞笑,恋爱,战斗,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1230/155783l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  5,
+                      "Tags":  "搞笑,恋爱,战斗,漫画改",
+                      "Source":  "https://myanimelist.net/anime/60055/Yozakura-san_Chi_no_Daisakusen_2nd_Season",
+                      "MalId":  60055
+                  },
+                  {
+                      "Title":  "魔法少女与恶曾是敌人",
+                      "Type":  "日本/奇幻,恋爱,搞笑,魔法",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1653/143959l.jpg",
+                      "Release":  "2024-07-09",
+                      "Episodes":  12,
+                      "Tags":  "奇幻,恋爱,搞笑,魔法",
+                      "Source":  "https://myanimelist.net/anime/57217/Katsute_Mahou_Shoujo_to_Aku_wa_Tekitai_shiteita",
+                      "MalId":  57217
+                  },
+                  {
+                      "Title":  "Love Live!",
+                      "Type":  "日本/搞笑,青春,校园,励志,美少女",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/11/56849l.jpg",
+                      "Release":  "2013-01-06",
+                      "Episodes":  13,
+                      "Tags":  "偶像,校园,励志,音乐",
+                      "Source":  "https://myanimelist.net/anime/15051/Love_Live_School_Idol_Project",
+                      "MalId":  15051
+                  },
+                  {
+                      "Title":  "Love Live!第二季",
+                      "Type":  "日本/搞笑,青春,校园,励志,美少女",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/10/59101l.jpg",
+                      "Release":  "2014-04-06",
+                      "Episodes":  13,
+                      "Tags":  "偶像,校园,励志,音乐",
+                      "Source":  "https://myanimelist.net/anime/19111/Love_Live_School_Idol_Project_2nd_Season",
+                      "MalId":  19111
+                  },
+                  {
+                      "Title":  "Love Live! 虹咲学园校园偶像同好会",
+                      "Type":  "日本/校园,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1393/109203l.jpg",
+                      "Release":  "2020-10-03",
+                      "Episodes":  13,
+                      "Tags":  "偶像,校园,励志,百合",
+                      "Source":  "https://myanimelist.net/anime/40879/Love_Live_Nijigasaki_Gakuen_School_Idol_Doukoukai",
+                      "MalId":  40879
+                  },
+                  {
+                      "Title":  "Love Live! Superstar!!",
+                      "Type":  "日本/校园,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1758/115692l.jpg",
+                      "Release":  "2021-07-11",
+                      "Episodes":  12,
+                      "Tags":  "偶像,校园,励志,百合",
+                      "Source":  "https://myanimelist.net/anime/41169/Love_Live_Superstar",
+                      "MalId":  41169
+                  },
+                  {
+                      "Title":  "Love Live! Superstar!!第二季",
+                      "Type":  "日本/校园,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1238/124173l.jpg",
+                      "Release":  "2022-07-17",
+                      "Episodes":  12,
+                      "Tags":  "偶像,校园,励志,百合",
+                      "Source":  "https://myanimelist.net/anime/50203/Love_Live_Superstar_2nd_Season",
+                      "MalId":  50203
+                  },
+                  {
+                      "Title":  "Love Live! 虹咲学园校园偶像同好会 第二季",
+                      "Type":  "日本/青春,校园,励志,百合",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1586/121947l.jpg",
+                      "Release":  "2022-04-02",
+                      "Episodes":  13,
+                      "Tags":  "偶像,校园,励志,百合",
+                      "Source":  "https://myanimelist.net/anime/48916/Love_Live_Nijigasaki_Gakuen_School_Idol_Doukoukai_2nd_Season",
+                      "MalId":  48916
+                  },
+                  {
+                      "Title":  "租借女友",
+                      "Type":  "日本/搞笑,校园,恋爱",
+                      "Score":  "5.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1902/128382l.jpg",
+                      "Release":  "2020-07-11",
+                      "Episodes":  12,
+                      "Tags":  "搞笑,校园,恋爱",
+                      "Source":  "https://myanimelist.net/anime/40839/Kanojo_Okarishimasu",
+                      "MalId":  40839
+                  },
+                  {
+                      "Title":  "租借女友 第二季",
+                      "Type":  "日本/搞笑,后宫,恋爱,校园,青春",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1070/124592l.jpg",
+                      "Release":  "2022-07-02",
+                      "Episodes":  12,
+                      "Tags":  "搞笑,后宫,恋爱,校园,青春",
+                      "Source":  "https://myanimelist.net/anime/42963/Kanojo_Okarishimasu_2nd_Season",
+                      "MalId":  42963
+                  },
+                  {
+                      "Title":  "租借女友 第三季",
+                      "Type":  "日本/搞笑,恋爱",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1696/136634l.jpg",
+                      "Release":  "2023-07-08",
+                      "Episodes":  12,
+                      "Tags":  "搞笑,恋爱",
+                      "Source":  "https://myanimelist.net/anime/53050/Kanojo_Okarishimasu_3rd_Season",
+                      "MalId":  53050
+                  },
+                  {
+                      "Title":  "租借女友 第四季",
+                      "Type":  "日本/搞笑,恋爱,后宫,青春,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1071/150808l.jpg",
+                      "Release":  "2025-07-05",
+                      "Episodes":  12,
+                      "Tags":  "搞笑,恋爱,后宫,青春,漫画改",
+                      "Source":  "https://myanimelist.net/anime/59277/Kanojo_Okarishimasu_4th_Season",
+                      "MalId":  59277
+                  },
+                  {
+                      "Title":  "租借女友 第五季",
+                      "Type":  "日本/恋爱,后宫,漫画改",
+                      "Score":  "5.5",
+                      "Cover":  "https://myanimelist.net/images/anime/1902/128382l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  5,
+                      "Tags":  "恋爱,后宫,漫画改",
+                      "Source":  "https://myanimelist.net/anime/40839/Kanojo_Okarishimasu",
+                      "MalId":  40839
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活",
+                      "Type":  "日本/战斗,奇幻,冒险",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1522/128039l.jpg",
+                      "Release":  "2016-04-04",
+                      "Episodes":  25,
+                      "Tags":  "战斗,奇幻,冒险",
+                      "Source":  "https://myanimelist.net/anime/31240/Re_Zero_kara_Hajimeru_Isekai_Seikatsu",
+                      "MalId":  31240
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活 Memory Snow",
+                      "Type":  "日本/战斗,奇幻,冒险",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1081/95707l.jpg",
+                      "Release":  "2018-10-06",
+                      "Episodes":  1,
+                      "Tags":  "战斗,奇幻,冒险,OVA",
+                      "Source":  "https://myanimelist.net/anime/36286/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_-_Memory_Snow",
+                      "MalId":  36286
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活 新编集版",
+                      "Type":  "日本/战斗,奇幻,冒险",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1522/128039l.jpg",
+                      "Release":  "2020-01-01",
+                      "Episodes":  13,
+                      "Tags":  "战斗,奇幻,冒险",
+                      "Source":  "https://myanimelist.net/anime/31240/Re_Zero_kara_Hajimeru_Isekai_Seikatsu",
+                      "MalId":  31240
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活 冰结之绊",
+                      "Type":  "日本/战斗,奇幻,冒险,美少女",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1238/104023l.jpg",
+                      "Release":  "2019-11-08",
+                      "Episodes":  1,
+                      "Tags":  "战斗,奇幻,冒险,美少女",
+                      "Source":  "https://myanimelist.net/anime/38414/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_-_Hyouketsu_no_Kizuna",
+                      "MalId":  38414
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活第二季",
+                      "Type":  "日本/战斗,奇幻,冒险,恋爱",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1444/108005l.jpg",
+                      "Release":  "2020-07-08",
+                      "Episodes":  25,
+                      "Tags":  "战斗,奇幻,冒险,恋爱",
+                      "Source":  "https://myanimelist.net/anime/39587/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_2nd_Season",
+                      "MalId":  39587
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活第三季 反击篇",
+                      "Type":  "日本/奇幻,战斗,后宫,热血,冒险,恋爱",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1706/144725l.jpg",
+                      "Release":  "2025-02-05",
+                      "Episodes":  8,
+                      "Tags":  "奇幻,战斗,冒险,恋爱",
+                      "Source":  "https://myanimelist.net/anime/54857/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_3rd_Season",
+                      "MalId":  54857
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活第三季",
+                      "Type":  "日本/奇幻,冒险,后宫,战斗",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1706/144725l.jpg",
+                      "Release":  "2024-10-02",
+                      "Episodes":  8,
+                      "Tags":  "奇幻,冒险,后宫,战斗",
+                      "Source":  "https://myanimelist.net/anime/54857/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_3rd_Season",
+                      "MalId":  54857
+                  },
+                  {
+                      "Title":  "Re：从零开始的异世界生活第四季",
+                      "Type":  "日本/奇幻,冒险,战斗,异世界,穿越,恋爱,悬疑,轻小",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1540/155824l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  5,
+                      "Tags":  "奇幻,冒险,战斗,恋爱",
+                      "Source":  "https://myanimelist.net/anime/61316/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_4th_Season",
+                      "MalId":  61316
+                  },
+                  {
+                      "Title":  "黑色四叶草",
+                      "Type":  "日本/热血,战斗,奇幻,冒险,魔法",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/2/88336l.jpg",
+                      "Release":  "2017-10-03",
+                      "Episodes":  170,
+                      "Tags":  "热血,战斗,奇幻,冒险,魔法",
+                      "Source":  "https://myanimelist.net/anime/34572/Black_Clover",
+                      "MalId":  34572
+                  },
+                  {
+                      "Title":  "我推的孩子",
+                      "Type":  "日本/恋爱,猎奇,推理",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1812/134736l.jpg",
+                      "Release":  "2023-04-12",
+                      "Episodes":  11,
+                      "Tags":  "偶像,推理,剧情",
+                      "Source":  "https://myanimelist.net/anime/52034/Oshi_no_Ko",
+                      "MalId":  52034
+                  },
+                  {
+                      "Title":  "我推的孩子 第二季",
+                      "Type":  "日本/恋爱,推理,青春,美少女",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1006/143302l.jpg",
+                      "Release":  "2024-07-03",
+                      "Episodes":  13,
+                      "Tags":  "偶像,推理,青春",
+                      "Source":  "https://myanimelist.net/anime/55791/Oshi_no_Ko_2nd_Season",
+                      "MalId":  55791
+                  },
+                  {
+                      "Title":  "我推的孩子 第三季",
+                      "Type":  "日本/奇幻,恋爱,后宫,偶像,悬疑,漫画改",
+                      "Score":  "10.0",
+                      "Cover":  "https://myanimelist.net/images/anime/1979/153329l.jpg",
+                      "Release":  "2026-01-01",
+                      "Episodes":  11,
+                      "Tags":  "偶像,悬疑,漫画改",
+                      "Source":  "https://myanimelist.net/anime/60058/Oshi_no_Ko_3rd_Season",
+                      "MalId":  60058
+                  }
+              ],
+    "characters":  [
+                       {
+                           "AnimeTitle":  "烟花",
+                           "Name":  "Oikawa, Nazuna",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/334378.jpg?s=e95977e4d0375471bd48b569a7317a17",
+                           "Reason":  "烟花 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "烟花",
+                           "Name":  "Shimada, Norimichi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/14/334377.jpg?s=5d98fb4a1337276df713c6e86236a57e",
+                           "Reason":  "烟花 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "烟花",
+                           "Name":  "Miura, Haruko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/2/364552.jpg?s=ff9623f92f58da34f2bcc259fc39d6dd",
+                           "Reason":  "烟花 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "刀剑神域：序列之争剧场版",
+                           "Name":  "Kirigaya, Kazuto",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/204821.jpg?s=6a96a832b35d0ff3af9292bdb082546e",
+                           "Reason":  "刀剑神域：序列之争剧场版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "刀剑神域：序列之争剧场版",
+                           "Name":  "Yuuki, Asuna",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/262053.jpg?s=449153df46cce80307c9f8ae622b4514",
+                           "Reason":  "刀剑神域：序列之争剧场版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "刀剑神域：序列之争剧场版",
+                           "Name":  "Yuna",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/314285.jpg?s=9aeece2337c7c72301c9f548a533c1a9",
+                           "Reason":  "刀剑神域：序列之争剧场版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "BanG Dream! Episode of Roselia I: 约定",
+                           "Name":  "Minato, Yukina",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/13/403710.jpg?s=50d2f6ddbad819a1a4146164cc32fd83",
+                           "Reason":  "BanG Dream! Episode of Roselia I: 约定 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "BanG Dream! Episode of Roselia I: 约定",
+                           "Name":  "Imai, Lisa",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/2/368416.jpg?s=305bbeb3a8783487004d411a9ed457fa",
+                           "Reason":  "BanG Dream! Episode of Roselia I: 约定 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "BanG Dream! Episode of Roselia I: 约定",
+                           "Name":  "Hikawa, Sayo",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/13/365749.jpg?s=3ef105b13a95684c10f677af50d00a42",
+                           "Reason":  "BanG Dream! Episode of Roselia I: 约定 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "黑子的篮球剧场版：LAST GAME",
+                           "Name":  "Kuroko, Tetsuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/3/258381.jpg?s=48b1c05a2e426be1ad1726cbbb5e210b",
+                           "Reason":  "黑子的篮球剧场版：LAST GAME 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "黑子的篮球剧场版：LAST GAME",
+                           "Name":  "Aomine, Daiki",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/246745.jpg?s=d52cc81c1470ab893dd2b389070a871e",
+                           "Reason":  "黑子的篮球剧场版：LAST GAME 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "黑子的篮球剧场版：LAST GAME",
+                           "Name":  "Akashi, Seijuurou",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/275813.jpg?s=516396f259b08c9bdcd400f0ac86afde",
+                           "Reason":  "黑子的篮球剧场版：LAST GAME 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女",
+                           "Name":  "Hirasawa, Yui",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/326131.jpg?s=20869a72ce294f22b20a5464f48ae576",
+                           "Reason":  "轻音少女 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女",
+                           "Name":  "Akiyama, Mio",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/11/48547.jpg?s=cc5ab1310b7f663aad2050da6c4664c9",
+                           "Reason":  "轻音少女 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女",
+                           "Name":  "Nakano, Azusa",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/86736.jpg?s=ecd00a6a480e9a7a988d43f34912a658",
+                           "Reason":  "轻音少女 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女 第二季",
+                           "Name":  "Hirasawa, Yui",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/326131.jpg?s=20869a72ce294f22b20a5464f48ae576",
+                           "Reason":  "轻音少女 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女 第二季",
+                           "Name":  "Akiyama, Mio",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/11/48547.jpg?s=cc5ab1310b7f663aad2050da6c4664c9",
+                           "Reason":  "轻音少女 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女 第二季",
+                           "Name":  "Nakano, Azusa",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/86736.jpg?s=ecd00a6a480e9a7a988d43f34912a658",
+                           "Reason":  "轻音少女 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女 剧场版",
+                           "Name":  "Hirasawa, Yui",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/326131.jpg?s=20869a72ce294f22b20a5464f48ae576",
+                           "Reason":  "轻音少女 剧场版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女 剧场版",
+                           "Name":  "Akiyama, Mio",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/11/48547.jpg?s=cc5ab1310b7f663aad2050da6c4664c9",
+                           "Reason":  "轻音少女 剧场版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "轻音少女 剧场版",
+                           "Name":  "Nakano, Azusa",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/86736.jpg?s=ecd00a6a480e9a7a988d43f34912a658",
+                           "Reason":  "轻音少女 剧场版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "孤独摇滚！",
+                           "Name":  "Gotou, Hitori",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/509913.jpg?s=b2ea13d31512f5f75c890100acd4d32c",
+                           "Reason":  "孤独摇滚！ 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "孤独摇滚！",
+                           "Name":  "Yamada, Ryou",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/491303.jpg?s=fa93ec272f438f378b075cba03e76875",
+                           "Reason":  "孤独摇滚！ 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "孤独摇滚！",
+                           "Name":  "Ijichi, Nijika",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/491305.jpg?s=3f2ab4809df1b2d7ef8b4f10ef35b05f",
+                           "Reason":  "孤独摇滚！ 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号",
+                           "Name":  "Oumae, Kumiko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/280130.jpg?s=dda6aac9e5f37c1795478e7c53e45779",
+                           "Reason":  "吹响！上低音号 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号",
+                           "Name":  "Kousaka, Reina",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/5/354305.jpg?s=cb7e46d1ef97e9fe5dd71fcdd40e0dde",
+                           "Reason":  "吹响！上低音号 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号",
+                           "Name":  "Katou, Hazuki",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/5/354300.jpg?s=8b5851ecce0482ae1cbe9aeadcdfc321",
+                           "Reason":  "吹响！上低音号 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号第二季",
+                           "Name":  "Oumae, Kumiko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/280130.jpg?s=dda6aac9e5f37c1795478e7c53e45779",
+                           "Reason":  "吹响！上低音号第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号第二季",
+                           "Name":  "Kousaka, Reina",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/5/354305.jpg?s=cb7e46d1ef97e9fe5dd71fcdd40e0dde",
+                           "Reason":  "吹响！上低音号第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号第二季",
+                           "Name":  "Tanaka, Asuka",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/319400.jpg?s=30fa4f38d22e720c7b2221fbccb24c23",
+                           "Reason":  "吹响！上低音号第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号第三季",
+                           "Name":  "Oumae, Kumiko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/280130.jpg?s=dda6aac9e5f37c1795478e7c53e45779",
+                           "Reason":  "吹响！上低音号第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号第三季",
+                           "Name":  "Kousaka, Reina",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/5/354305.jpg?s=cb7e46d1ef97e9fe5dd71fcdd40e0dde",
+                           "Reason":  "吹响！上低音号第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号第三季",
+                           "Name":  "Tanaka, Asuka",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/319400.jpg?s=30fa4f38d22e720c7b2221fbccb24c23",
+                           "Reason":  "吹响！上低音号第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号剧场版合集",
+                           "Name":  "Oumae, Kumiko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/280130.jpg?s=dda6aac9e5f37c1795478e7c53e45779",
+                           "Reason":  "吹响！上低音号剧场版合集 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号剧场版合集",
+                           "Name":  "Kousaka, Reina",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/5/354305.jpg?s=cb7e46d1ef97e9fe5dd71fcdd40e0dde",
+                           "Reason":  "吹响！上低音号剧场版合集 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "吹响！上低音号剧场版合集",
+                           "Name":  "Katou, Hazuki",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/5/354300.jpg?s=8b5851ecce0482ae1cbe9aeadcdfc321",
+                           "Reason":  "吹响！上低音号剧场版合集 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "金牌得主 第二季",
+                           "Name":  "Yuitsuka, Inori",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/579734.jpg?s=dfa422860c5ef8de5125ef23c450a518",
+                           "Reason":  "金牌得主 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "金牌得主 第二季",
+                           "Name":  "Akeuraji, Tsukasa",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/517162.jpg?s=47dfe271283d84f167ca1a06c4fc1358",
+                           "Reason":  "金牌得主 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "金牌得主 第二季",
+                           "Name":  "Kamisaki, Hikaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/14/579733.jpg?s=1c4114cac5c5a7ad350379137e66ac84",
+                           "Reason":  "金牌得主 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "想吃掉我的非人少女",
+                           "Name":  "Yaotose, Hinako",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/2/583508.jpg?s=dbf6b856b21c5b62d564b195cdf58575",
+                           "Reason":  "想吃掉我的非人少女 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "想吃掉我的非人少女",
+                           "Name":  "Oumi, Shiori",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/583509.jpg?s=90ff4c2694c8a32080cfb75296cc3202",
+                           "Reason":  "想吃掉我的非人少女 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "想吃掉我的非人少女",
+                           "Name":  "Yashiro, Miko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/583507.jpg?s=b8aa61f1e474dcc729a1dc4c11affab2",
+                           "Reason":  "想吃掉我的非人少女 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "关于我在无意间被隔壁的天使变成废柴这件事",
+                           "Name":  "Shiina, Mahiru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/3/624218.jpg?s=b0ef759ce448ec55a21dc982e7da100a",
+                           "Reason":  "关于我在无意间被隔壁的天使变成废柴这件事 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "关于我在无意间被隔壁的天使变成废柴这件事",
+                           "Name":  "Fujimiya, Amane",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/624219.jpg?s=c1fd2a52293ed3e76e269720f27f2826",
+                           "Reason":  "关于我在无意间被隔壁的天使变成废柴这件事 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "关于我在无意间被隔壁的天使变成废柴这件事",
+                           "Name":  "Shirakawa, Chitose",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/624220.jpg?s=dd25d54b61de504bfd097348f2975882",
+                           "Reason":  "关于我在无意间被隔壁的天使变成废柴这件事 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "欢迎来到实力至上主义教室第四季",
+                           "Name":  "Ayanokouji, Kiyotaka",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/539058.jpg?s=b3479dd539992cf50ab1bfd6f38dd0c4",
+                           "Reason":  "欢迎来到实力至上主义教室第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "欢迎来到实力至上主义教室第四季",
+                           "Name":  "Horikita, Suzune",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/433767.jpg?s=de877dbcfe6d022f5f32d47c4e70e2a2",
+                           "Reason":  "欢迎来到实力至上主义教室第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "欢迎来到实力至上主义教室第四季",
+                           "Name":  "Karuizawa, Kei",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/539083.jpg?s=83aea38bdb29a47e0945705307804de7",
+                           "Reason":  "欢迎来到实力至上主义教室第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "咒术回战 第三季",
+                           "Name":  "Gojou, Satoru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/422168.jpg?s=7c1dfc26a9b3a6652da616a0fec7af01",
+                           "Reason":  "咒术回战 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "咒术回战 第三季",
+                           "Name":  "Itadori, Yuuji",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/467646.jpg?s=9e1cb7b0c6c7f145661e8ee93f32215d",
+                           "Reason":  "咒术回战 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "咒术回战 第三季",
+                           "Name":  "Fushiguro, Megumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/12/621887.jpg?s=fb8e12884d38886ba643f4f2509b22d6",
+                           "Reason":  "咒术回战 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "杖与剑的魔剑谭 第二季",
+                           "Name":  "Serfort, Elfaria Albis",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/2/563704.jpg?s=042ae5d743fde476fbd1c40a501a457b",
+                           "Reason":  "杖与剑的魔剑谭 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "杖与剑的魔剑谭 第二季",
+                           "Name":  "Serfort, Will",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/537716.jpg?s=1ebc4a01835f8ab76518ebce8c7bdff2",
+                           "Reason":  "杖与剑的魔剑谭 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "杖与剑的魔剑谭 第二季",
+                           "Name":  "Loire, Colette",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/11/539536.jpg?s=8e729f4f5efb4537cf869a8000e39d7d",
+                           "Reason":  "杖与剑的魔剑谭 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "夜樱家的大作战 第二季",
+                           "Name":  "Yozakura, Mutsumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/628629.jpg?s=758459918f466d1860060d7bada4d140",
+                           "Reason":  "夜樱家的大作战 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "夜樱家的大作战 第二季",
+                           "Name":  "Asano, Taiyou",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/2/523024.jpg?s=011422b4f499170666aa1950e02a2d1b",
+                           "Reason":  "夜樱家的大作战 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "夜樱家的大作战 第二季",
+                           "Name":  "Yozakura, Kyouichirou",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/2/523027.jpg?s=af575269bc1745ec8886598c0e936ec3",
+                           "Reason":  "夜樱家的大作战 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "魔法少女与恶曾是敌人",
+                           "Name":  "Mimori, Byakuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/558273.jpg?s=1f8c0a9e03909a58e71a2a5fe887b842",
+                           "Reason":  "魔法少女与恶曾是敌人 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "魔法少女与恶曾是敌人",
+                           "Name":  "Miller, Shun",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/555769.jpg?s=f856ab3baa1628a317cd0340c040c5cb",
+                           "Reason":  "魔法少女与恶曾是敌人 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "魔法少女与恶曾是敌人",
+                           "Name":  "Kagari, Hibana",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/558274.jpg?s=adc92d804578aff42ba16d52def86aa8",
+                           "Reason":  "魔法少女与恶曾是敌人 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live!第二季",
+                           "Name":  "Nishikino, Maki",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/196139.jpg?s=3f244b83a2a151fb8d44833dd464f96f",
+                           "Reason":  "Love Live!第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live!第二季",
+                           "Name":  "Yazawa, Niko",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/200929.jpg?s=389f1b4fe5b20bc82aac275a89b688d6",
+                           "Reason":  "Love Live!第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live!第二季",
+                           "Name":  "Toujou, Nozomi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/295027.jpg?s=cbfc5a84e30a9085c319aa541c4d136a",
+                           "Reason":  "Love Live!第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! 虹咲学园校园偶像同好会",
+                           "Name":  "Tennouji, Rina",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/3/421043.jpg?s=9986d4a347380c0f5a05d7735181c8a8",
+                           "Reason":  "Love Live! 虹咲学园校园偶像同好会 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! 虹咲学园校园偶像同好会",
+                           "Name":  "Yuuki, Setsuna",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/421041.jpg?s=3b89889b504bc908fde7a9c8c8fd8a10",
+                           "Reason":  "Love Live! 虹咲学园校园偶像同好会 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! 虹咲学园校园偶像同好会",
+                           "Name":  "Konoe, Kanata",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/10/565836.jpg?s=3398e144af19d2c3665237ccd0359c6c",
+                           "Reason":  "Love Live! 虹咲学园校园偶像同好会 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! Superstar!!",
+                           "Name":  "Shibuya, Kanon",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/3/458089.jpg?s=772014c66fe6e50fb0c2e7fbef6a58d5",
+                           "Reason":  "Love Live! Superstar!! 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! Superstar!!",
+                           "Name":  "Tang, Keke",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/458836.jpg?s=da332f7312e01ba8292c4816ef556ad6",
+                           "Reason":  "Love Live! Superstar!! 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! Superstar!!",
+                           "Name":  "Heanna, Sumire",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/458091.jpg?s=f437ee6e5d66635799a4e48a38d247a7",
+                           "Reason":  "Love Live! Superstar!! 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! Superstar!!第二季",
+                           "Name":  "Shibuya, Kanon",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/3/458089.jpg?s=772014c66fe6e50fb0c2e7fbef6a58d5",
+                           "Reason":  "Love Live! Superstar!!第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! Superstar!!第二季",
+                           "Name":  "Tang, Keke",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/458836.jpg?s=da332f7312e01ba8292c4816ef556ad6",
+                           "Reason":  "Love Live! Superstar!!第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Love Live! Superstar!!第二季",
+                           "Name":  "Heanna, Sumire",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/7/458091.jpg?s=f437ee6e5d66635799a4e48a38d247a7",
+                           "Reason":  "Love Live! Superstar!!第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友",
+                           "Name":  "Ichinose, Chizuru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/484261.jpg?s=51eb91f1b831e6dbab1a1eb625f28caf",
+                           "Reason":  "租借女友 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友",
+                           "Name":  "Kinoshita, Kazuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/396701.jpg?s=99585bacf71f5c4f8807f0ea127787b3",
+                           "Reason":  "租借女友 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友",
+                           "Name":  "Sakurasawa, Sumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/484263.jpg?s=9924e6a1ea2aaccea309f5302f454bb1",
+                           "Reason":  "租借女友 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第二季",
+                           "Name":  "Ichinose, Chizuru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/484261.jpg?s=51eb91f1b831e6dbab1a1eb625f28caf",
+                           "Reason":  "租借女友 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第二季",
+                           "Name":  "Kinoshita, Kazuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/396701.jpg?s=99585bacf71f5c4f8807f0ea127787b3",
+                           "Reason":  "租借女友 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第二季",
+                           "Name":  "Sakurasawa, Sumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/484263.jpg?s=9924e6a1ea2aaccea309f5302f454bb1",
+                           "Reason":  "租借女友 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第三季",
+                           "Name":  "Ichinose, Chizuru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/484261.jpg?s=51eb91f1b831e6dbab1a1eb625f28caf",
+                           "Reason":  "租借女友 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第三季",
+                           "Name":  "Kinoshita, Kazuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/396701.jpg?s=99585bacf71f5c4f8807f0ea127787b3",
+                           "Reason":  "租借女友 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第三季",
+                           "Name":  "Sakurasawa, Sumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/484263.jpg?s=9924e6a1ea2aaccea309f5302f454bb1",
+                           "Reason":  "租借女友 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第四季",
+                           "Name":  "Ichinose, Chizuru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/484261.jpg?s=51eb91f1b831e6dbab1a1eb625f28caf",
+                           "Reason":  "租借女友 第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第四季",
+                           "Name":  "Kinoshita, Kazuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/396701.jpg?s=99585bacf71f5c4f8807f0ea127787b3",
+                           "Reason":  "租借女友 第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第四季",
+                           "Name":  "Sakurasawa, Sumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/484263.jpg?s=9924e6a1ea2aaccea309f5302f454bb1",
+                           "Reason":  "租借女友 第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第五季",
+                           "Name":  "Ichinose, Chizuru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/4/484261.jpg?s=51eb91f1b831e6dbab1a1eb625f28caf",
+                           "Reason":  "租借女友 第五季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第五季",
+                           "Name":  "Kinoshita, Kazuya",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/396701.jpg?s=99585bacf71f5c4f8807f0ea127787b3",
+                           "Reason":  "租借女友 第五季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "租借女友 第五季",
+                           "Name":  "Sakurasawa, Sumi",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/484263.jpg?s=9924e6a1ea2aaccea309f5302f454bb1",
+                           "Reason":  "租借女友 第五季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 Memory Snow",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活 Memory Snow 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 Memory Snow",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活 Memory Snow 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 Memory Snow",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活 Memory Snow 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 新编集版",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活 新编集版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 新编集版",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活 新编集版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 新编集版",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活 新编集版 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 冰结之绊",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活 冰结之绊 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 冰结之绊",
+                           "Name":  "Pack",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/300489.jpg?s=e41c0d4ad13c017d2da734c423858bce",
+                           "Reason":  "Re：从零开始的异世界生活 冰结之绊 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活 冰结之绊",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活 冰结之绊 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第二季",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第二季",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第二季",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第三季 反击篇",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活第三季 反击篇 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第三季 反击篇",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活第三季 反击篇 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第三季 反击篇",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活第三季 反击篇 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第三季",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第三季",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第三季",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第四季",
+                           "Name":  "Natsuki, Subaru",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/15/315153.jpg?s=48e475fa71e56bb47eb93594fe10359d",
+                           "Reason":  "Re：从零开始的异世界生活第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第四季",
+                           "Name":  "Emilia",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/16/551926.jpg?s=22728d0269f40fb353a31a54545ded00",
+                           "Reason":  "Re：从零开始的异世界生活第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "Re：从零开始的异世界生活第四季",
+                           "Name":  "Rem",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/9/311327.jpg?s=3246595cd08261824d0dbf11a44c7229",
+                           "Reason":  "Re：从零开始的异世界生活第四季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "黑色四叶草",
+                           "Name":  "Asta",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/312836.jpg?s=f4ea6f575c53db8908baf0f874e33e70",
+                           "Reason":  "黑色四叶草 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "黑色四叶草",
+                           "Name":  "Silva, Noelle",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/14/338844.jpg?s=37d6d1f99de07821983285b9a3ac2614",
+                           "Reason":  "黑色四叶草 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "黑色四叶草",
+                           "Name":  "Yuno",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/318765.jpg?s=dbc2307d86d0e001e31b9aad6f12b21c",
+                           "Reason":  "黑色四叶草 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子",
+                           "Name":  "Arima, Kana",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/503733.jpg?s=6dddc82129535b664f8d5f0ba1e5b14b",
+                           "Reason":  "我推的孩子 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子",
+                           "Name":  "Hoshino, Ai",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/496453.jpg?s=586f73ec11e59e6a6acc659afe9fb660",
+                           "Reason":  "我推的孩子 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子",
+                           "Name":  "Hoshino, Aquamarine",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/512509.jpg?s=0fbc9c40821bab48c922aa336708bb33",
+                           "Reason":  "我推的孩子 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子 第二季",
+                           "Name":  "Arima, Kana",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/503733.jpg?s=6dddc82129535b664f8d5f0ba1e5b14b",
+                           "Reason":  "我推的孩子 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子 第二季",
+                           "Name":  "Kurokawa, Akane",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/592737.jpg?s=602e780d91b34622645cf66e520d7ba6",
+                           "Reason":  "我推的孩子 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子 第二季",
+                           "Name":  "Hoshino, Aquamarine",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/512509.jpg?s=0fbc9c40821bab48c922aa336708bb33",
+                           "Reason":  "我推的孩子 第二季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子 第三季",
+                           "Name":  "Arima, Kana",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/503733.jpg?s=6dddc82129535b664f8d5f0ba1e5b14b",
+                           "Reason":  "我推的孩子 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子 第三季",
+                           "Name":  "Kurokawa, Akane",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/6/592737.jpg?s=602e780d91b34622645cf66e520d7ba6",
+                           "Reason":  "我推的孩子 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       },
+                       {
+                           "AnimeTitle":  "我推的孩子 第三季",
+                           "Name":  "Hoshino, Aquamarine",
+                           "Image":  "https://cdn.myanimelist.net/images/characters/8/512509.jpg?s=0fbc9c40821bab48c922aa336708bb33",
+                           "Reason":  "我推的孩子 第三季 的主要角色，承载了这部作品最鲜明的记忆点。",
+                           "Level":  5,
+                           "Quote":  "我会继续向前。"
+                       }
+                   ]
+}

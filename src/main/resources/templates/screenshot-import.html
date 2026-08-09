@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 截图导入</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/yearly-report">年度报告</a>
+            <a class="active" href="/import/screenshot">截图导入</a>
+            <a href="/pro">VIP</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="import-hero glass-panel">
+            <div>
+                <p class="eyebrow">SCREENSHOT IMPORT</p>
+                <h2>把平台截图整理成番剧记录</h2>
+                <p>上传截图、粘贴识别文字后，系统会自动提取评分、年份和标签，适合批量补充你的番剧回忆录。</p>
+            </div>
+        </section>
+
+        <form class="import-workspace" action="/import/screenshot" method="post" enctype="multipart/form-data">
+            <section class="import-preview-panel">
+                <label class="upload-drop">
+                    <input id="screenshotFile" name="screenshot" type="file" accept="image/*">
+                    <span>选择截图</span>
+                    <p>支持 JPG、PNG、WEBP。上传后可作为这条记录的临时封面预览。</p>
+                </label>
+                <img id="screenshotPreview" alt="截图预览">
+                <textarea id="recognizedText" name="recognizedText" placeholder="把截图里识别到的文字粘到这里，例如：2025 日本 校园 日常 恋爱 10.0"></textarea>
+                <button class="secondary-btn" id="analyzeScreenshot" type="button">智能整理文本</button>
+            </section>
+
+            <section class="import-form-panel glass-panel">
+                <div class="section-heading">
+                    <h3>导入到番剧数据库</h3>
+                    <span>VIP 效率工具</span>
+                </div>
+                <div class="form-grid">
+                    <label>
+                        <span>番剧标题</span>
+                        <input id="titleInput" name="title" required placeholder="例如：Lycoris Recoil">
+                    </label>
+                    <label>
+                        <span>观看状态</span>
+                        <select name="status">
+                            <option value="看完">看完</option>
+                            <option value="在看">在看</option>
+                            <option value="想看">想看</option>
+                            <option value="搁置">搁置</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>评分</span>
+                        <input id="scoreInput" name="score" type="number" min="0" max="10" step="0.1" placeholder="10.0">
+                    </label>
+                    <label>
+                        <span>类型</span>
+                        <input id="typeInput" name="type" placeholder="校园,日常,恋爱">
+                    </label>
+                    <label>
+                        <span>观看日期</span>
+                        <input name="watchDate" type="date">
+                    </label>
+                    <label>
+                        <span>标签</span>
+                        <input id="tagsInput" name="tags" placeholder="治愈,青春,漫画改">
+                    </label>
+                </div>
+                <label class="wide-label">
+                    <span>回忆备注</span>
+                    <textarea id="memoryTextInput" name="memoryText" placeholder="这张截图对应的观看记忆、喜欢的原因或一句短评。"></textarea>
+                </label>
+                <button class="primary-btn" type="submit">一键加入回忆录</button>
+            </section>
+        </form>
+    </main>
+</div>
+
+<script>
+const fileInput = document.getElementById("screenshotFile");
+const preview = document.getElementById("screenshotPreview");
+const textInput = document.getElementById("recognizedText");
+const titleInput = document.getElementById("titleInput");
+const scoreInput = document.getElementById("scoreInput");
+const typeInput = document.getElementById("typeInput");
+const tagsInput = document.getElementById("tagsInput");
+const memoryTextInput = document.getElementById("memoryTextInput");
+
+fileInput.addEventListener("change", () => {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) {
+        preview.removeAttribute("src");
+        return;
+    }
+    preview.src = URL.createObjectURL(file);
+});
+
+document.getElementById("analyzeScreenshot").addEventListener("click", () => {
+    const text = textInput.value.trim();
+    if (!text) {
+        return;
+    }
+    const score = text.match(/(?:^|\s)(10(?:\.0)?|[0-9](?:\.[0-9])?)(?:\s|$)/);
+    const year = text.match(/20\d{2}/);
+    const knownTags = ["校园", "日常", "恋爱", "青春", "百合", "奇幻", "战斗", "搞笑", "推理", "音乐", "漫画改", "游戏改", "治愈", "冒险", "后宫", "运动"];
+    const tags = knownTags.filter(tag => text.includes(tag));
+    if (score && !scoreInput.value) {
+        scoreInput.value = score[1];
+    }
+    if (tags.length) {
+        tagsInput.value = tags.join(",");
+        typeInput.value = tags.slice(0, 4).join(",");
+    }
+    if (!memoryTextInput.value) {
+        const prefix = year ? year[0] + " 年截图导入。" : "截图导入。";
+        memoryTextInput.value = prefix + text.slice(0, 120);
+    }
+    if (!titleInput.value) {
+        titleInput.focus();
+    }
+});
+</script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

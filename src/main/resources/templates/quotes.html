@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 台词</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home"><h1>Sekai Memory Book</h1><p>番剧回忆录</p></a>
+        <nav class="nav">
+            <a href="/home">首页</a><a href="/anime">番剧</a><a href="/characters">角色</a><a class="active" href="/quotes">台词</a>
+            <a href="/timeline">时间线</a><a href="/yearly-report">年度报告</a><a href="/advanced">高级功能</a><a href="/search">搜索</a><a href="/image-lab">图片实验室</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+    <main class="main-wrap">
+        <section class="page-title glass-panel"><p class="eyebrow">QUOTE COLLECTION</p><h2>台词摘录</h2><p>一些句子会在很久以后再次击中你。把它们放在这里，随时回来看看。</p></section>
+        <div class="content-grid">
+            <form class="form-card" action="/quotes/add" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="returnTo" th:value="@{/quotes(page=${currentPage})}">
+                <h3>添加台词</h3>
+                <div class="server-message success" th:if="${message}" th:text="${message}"></div>
+                <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+                <div class="form-group"><label for="content">台词内容</label><textarea id="content" name="content" placeholder="写下你想记住的台词" required></textarea></div>
+                <div class="form-group"><label for="characterName">角色名</label><input id="characterName" name="characterName" type="text" placeholder="说出台词的角色"></div>
+                <div class="form-group"><label for="animeId">所属番剧</label><select id="animeId" name="animeId"><option value="">不关联</option><option th:each="anime : ${animeOptions}" th:value="${anime.id}" th:text="${anime.title}">番剧标题</option></select></div>
+                <div class="form-group"><label for="tag">标签</label><input id="tag" name="tag" type="text" placeholder="治愈 / 热血 / 名场面"></div>
+                <div class="form-group"><label for="feeling">当时的感受</label><textarea id="feeling" name="feeling" placeholder="这句话让你想到了什么"></textarea></div>
+                <div class="form-group"><label for="videoUrl">台词视频链接</label><input id="videoUrl" name="videoUrl" type="url" placeholder="粘贴 B站 / YouTube / mp4 链接"></div>
+                <div class="form-group"><label for="videoFile">上传台词视频</label><input id="videoFile" name="videoFile" type="file" accept="video/mp4,video/webm,video/ogg,video/quicktime"></div>
+                <button class="primary-btn" type="submit">保存台词</button>
+            </form>
+            <section class="list-panel">
+                <div class="toolbar glass-panel"><span class="toolbar-count" th:text="'共 ' + ${totalCount} + ' 条台词'">共 0 条台词</span></div>
+                <div class="empty-state glass-panel" th:if="${#lists.isEmpty(quoteList)}">还没有台词摘录。</div>
+                <article class="memory-card" th:each="quote : ${quoteList}">
+                    <div class="memory-card-inner">
+                        <p class="quote-text" th:text="'“' + ${quote.content} + '”'">“台词内容”</p>
+                        <div class="meta-row"><span class="tag" th:if="${quote.characterName}" th:text="${quote.characterName}">角色</span><span class="tag" th:if="${quote.tag}" th:text="${quote.tag}">标签</span><a class="tag tag-link" th:if="${quote.animeId}" th:href="@{'/anime/' + ${quote.animeId}}" th:text="'所属番剧 #' + ${quote.animeId}">所属番剧</a></div>
+                        <p th:if="${quote.feeling}" th:text="${quote.feeling}">感受</p>
+                        <div class="quote-video" th:if="${quote.hasVideoUrl()}">
+                            <video th:if="${quote.directVideoUrl}" th:src="${quote.videoUrl}" controls preload="metadata"></video>
+                            <iframe th:if="${quote.embeddableVideoUrl != null}" th:src="${quote.embeddableVideoUrl}" title="台词视频" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <a class="quote-video-link" th:if="${!quote.directVideoUrl && quote.embeddableVideoUrl == null}" th:href="${quote.videoUrl}" target="_blank" rel="noopener">打开台词视频</a>
+                        </div>
+                        <details class="edit-panel">
+                            <summary>编辑</summary>
+                            <form th:action="@{'/quotes/update/' + ${quote.id}}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="returnTo" th:value="@{/quotes(page=${currentPage})}">
+                                <div class="form-group"><label th:for="'edit-content-' + ${quote.id}">台词内容</label><textarea th:id="'edit-content-' + ${quote.id}" name="content" th:text="${quote.content}" required></textarea></div>
+                                <div class="form-group"><label th:for="'edit-quote-character-' + ${quote.id}">角色名</label><input th:id="'edit-quote-character-' + ${quote.id}" name="characterName" type="text" th:value="${quote.characterName}"></div>
+                                <div class="form-group"><label th:for="'edit-quote-anime-' + ${quote.id}">所属番剧</label><select th:id="'edit-quote-anime-' + ${quote.id}" name="animeId"><option value="">不关联</option><option th:each="anime : ${animeOptions}" th:value="${anime.id}" th:text="${anime.title}" th:selected="${quote.animeId == anime.id}">番剧标题</option></select></div>
+                                <div class="form-group"><label th:for="'edit-tag-' + ${quote.id}">标签</label><input th:id="'edit-tag-' + ${quote.id}" name="tag" type="text" th:value="${quote.tag}"></div>
+                                <div class="form-group"><label th:for="'edit-feeling-' + ${quote.id}">感受</label><textarea th:id="'edit-feeling-' + ${quote.id}" name="feeling" th:text="${quote.feeling}"></textarea></div>
+                                <div class="form-group"><label th:for="'edit-video-url-' + ${quote.id}">台词视频链接</label><input th:id="'edit-video-url-' + ${quote.id}" name="videoUrl" type="url" th:value="${quote.videoUrl}" placeholder="粘贴 B站 / YouTube / mp4 链接"></div>
+                                <div class="form-group"><label th:for="'edit-video-file-' + ${quote.id}">替换上传视频</label><input th:id="'edit-video-file-' + ${quote.id}" name="videoFile" type="file" accept="video/mp4,video/webm,video/ogg,video/quicktime"></div>
+                                <button class="primary-btn" type="submit">保存修改</button>
+                            </form>
+                        </details>
+                        <div class="card-actions">
+                            <a class="secondary-btn" th:href="${quote.videoSearchUrl}" target="_blank" rel="noopener">找视频</a>
+                            <form th:action="@{'/quotes/delete/' + ${quote.id}}" method="post">
+                                <input type="hidden" name="returnTo" th:value="@{/quotes(page=${currentPage})}">
+                                <button class="danger-btn" type="submit">删除</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                <nav class="pagination" th:if="${totalPages > 1}"><a class="secondary-btn" th:classappend="${currentPage == 1} ? ' disabled'" th:href="@{/quotes(page=${currentPage - 1})}">上一页</a><span th:text="${currentPage + ' / ' + totalPages}">1 / 1</span><form class="page-jump-form" action="/quotes" method="get"><label for="quotePageJump">跳到</label><select id="quotePageJump" name="page" onchange="this.form.submit()"><option th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:value="${pageNumber}" th:selected="${pageNumber == currentPage}" th:text="${pageNumber + ' 页'}">1 页</option></select></form><a class="secondary-btn" th:classappend="${currentPage == totalPages} ? ' disabled'" th:href="@{/quotes(page=${currentPage + 1})}">下一页</a></nav>
+            </section>
+        </div>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

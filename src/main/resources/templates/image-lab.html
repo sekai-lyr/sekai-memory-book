@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 图片工具</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/advanced">高级功能</a>
+            <a href="/search">搜索</a>
+            <a class="active" href="/image-lab">图片工具</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">旅人</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="page-title glass-panel">
+            <p class="eyebrow">IMAGE LAB</p>
+            <h2>图片智能适配与本地缓存</h2>
+            <p>粘贴图片 URL，系统会下载到本地，识别宽高比例，并告诉你适合放到封面、角色横幅还是立绘位置。</p>
+        </section>
+
+        <section class="lab-panel">
+            <div class="form-group">
+                <label for="imageUrlInput">图片 URL</label>
+                <input id="imageUrlInput" type="url" placeholder="https://example.com/image.jpg">
+            </div>
+            <button class="primary-btn" type="button" onclick="cacheImage()">缓存并检测</button>
+            <div class="image-lab-result" id="imageLabResult"></div>
+        </section>
+    </main>
+</div>
+
+<script>
+async function cacheImage() {
+    const input = document.getElementById("imageUrlInput");
+    const result = document.getElementById("imageLabResult");
+    const url = input.value.trim();
+    if (!url) {
+        result.innerHTML = "<div class='server-message error'>请输入图片 URL</div>";
+        return;
+    }
+    result.innerHTML = "<div class='server-message success'>正在下载和检测...</div>";
+    const body = new URLSearchParams();
+    body.set("url", url);
+    const response = await fetch("/image/cache", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body
+    });
+    const data = await response.json();
+    if (!data.isSuccess) {
+        result.innerHTML = `<div class='server-message error'>${data.message}</div>`;
+        return;
+    }
+    const image = data.data;
+    result.innerHTML = `
+        <div class="image-preview-card">
+            <img src="${image.url}" alt="缓存图片">
+            <div>
+                <h3>已缓存</h3>
+                <p>本地地址：<code>${image.url}</code></p>
+                <p>尺寸：${image.width} x ${image.height}，比例：${image.ratio}</p>
+                <p>建议用：${image.advice}</p>
+            </div>
+        </div>
+    `;
+}
+</script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 补番计划</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a class="active" href="/pro">Pro</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="watch-plan-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP WATCH PLANNER</p>
+                <h2>7 天补番计划</h2>
+                <p>系统根据“在看、想看、搁置”、评分和集数，自动给你排一周补番任务。它不只记录过去，也帮用户继续看下去。</p>
+                <div class="quick-actions">
+                    <a class="primary-btn" href="/anime">管理番剧</a>
+                    <a class="secondary-btn" href="/pro/briefing">今日整理台</a>
+                    <a class="secondary-btn" href="/pro/playlists">主题片单</a>
+                </div>
+            </div>
+            <div class="watch-plan-stat">
+                <span>待推进作品</span>
+                <strong th:text="${backlogCount}">0</strong>
+                <p>未看完的作品越多，补番计划越能体现价值。</p>
+            </div>
+        </section>
+
+        <section class="watch-plan-board" th:if="${!#lists.isEmpty(watchPlan)}">
+            <article class="watch-plan-day" th:each="day : ${watchPlan}">
+                <div class="watch-day-date">
+                    <span th:text="${'DAY ' + day.dayNumber}">DAY 1</span>
+                    <strong th:text="${#temporals.format(day.date, 'MM-dd')}">05-27</strong>
+                </div>
+                <img th:if="${day.anime.coverUrl != null && !#strings.isEmpty(day.anime.coverUrl)}" th:src="${day.anime.coverUrl}" alt="封面" onerror="this.remove()">
+                <div class="watch-day-copy">
+                    <span th:text="${day.focus}">先启动</span>
+                    <h3 th:text="${day.anime.title}">番剧标题</h3>
+                    <p th:text="${day.reason}">推荐理由</p>
+                    <div class="watch-day-bottom">
+                        <b th:text="${day.episodes + ' 集'}">1 集</b>
+                        <a th:href="@{'/anime/' + ${day.anime.id}}">打开记录</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="health-empty" th:if="${#lists.isEmpty(watchPlan)}">
+            <h3>暂时没有待补番剧</h3>
+            <p>把番剧状态设为“想看”或“在看”，并填写当前集数和总集数后，这里会自动生成 7 天计划。</p>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

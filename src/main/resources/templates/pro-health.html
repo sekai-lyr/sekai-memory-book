@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 档案体检</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/pro">Pro</a>
+            <a class="active" href="/pro/health">档案体检</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="health-hero glass-panel">
+            <div>
+                <p class="eyebrow">ARCHIVE HEALTH</p>
+                <h2>档案体检</h2>
+                <p>自动检查缺封面、缺角色、缺台词、缺评分和缺回忆的番剧。这个功能的目标不是让你记更多，而是让你的回忆录越整理越像一套作品集。</p>
+                <div class="quick-actions">
+                    <a class="primary-btn" href="/pro/export/json">下载完整备份</a>
+                    <a class="secondary-btn" href="/pro/export/anime.csv">导出番剧 CSV</a>
+                    <a class="secondary-btn" href="/pro/export/characters.csv">导出角色 CSV</a>
+                    <a class="secondary-btn" href="/pro/export/quotes.csv">导出台词 CSV</a>
+                    <a class="secondary-btn" href="/pro">返回 Pro</a>
+                </div>
+            </div>
+            <div class="health-score">
+                <span>完成度</span>
+                <strong th:text="${healthScore + '%'}">86%</strong>
+                <p th:text="${'番剧 ' + stats.animeCount + ' 部 · 角色 ' + stats.characterCount + ' 个 · 台词 ' + stats.quoteCount + ' 条'}">番剧 0 部</p>
+            </div>
+        </section>
+
+        <section class="health-grid">
+            <article th:if="${#lists.isEmpty(issues)}" class="health-empty glass-panel">
+                <h3>你的档案状态很好</h3>
+                <p>暂时没有发现明显缺口，可以去生成年度报告或公开主页。</p>
+            </article>
+            <a class="health-issue" th:each="issue : ${issues}" th:href="${issue.href}" th:classappend="${issue.level}">
+                <span th:text="${issue.type}">缺封面</span>
+                <h3 th:text="${issue.title}">番剧标题</h3>
+                <p th:text="${issue.message}">建议说明</p>
+            </a>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

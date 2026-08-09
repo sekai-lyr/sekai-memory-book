@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/memory-graph">记忆图谱</a>
+            <a href="/import/screenshot">截图导入</a>
+            <a class="active" href="/pro">VIP</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="pro-hero pro-hero-premium glass-panel">
+            <div>
+                <p class="eyebrow">MEMORY BOOK VIP</p>
+                <h2>把番剧回忆录做成可展示、可复盘、可运营的个人档案库。</h2>
+                <p>免费版负责记录，VIP 负责整理、分析、补全、导出和展示。它的卖点不是“多几个按钮”，而是帮用户把碎片记录变成漂亮的番剧人生档案。</p>
+                <div class="server-message success" th:if="${message}" th:text="${message}"></div>
+                <div class="server-message error" th:if="${error}" th:text="${error}"></div>
+                <div class="quick-actions">
+                    <a class="primary-btn" th:href="${loginUser.pro ? '/pro/asset-lab' : '/pro/checkout'}"
+                       th:text="${loginUser.pro ? '进入 VIP 资产工作台' : '选择 VIP 套餐'}">选择 VIP 套餐</a>
+                    <a class="secondary-btn" th:href="@{'/u/' + ${loginUser.userName}}">公开展馆</a>
+                    <a class="secondary-btn" href="/pro/briefing">今日整理台</a>
+                    <a class="secondary-btn" href="/pro/asset-lab">资产工作台</a>
+                    <a class="secondary-btn" href="/pro/playlists">主题片单</a>
+                    <a class="secondary-btn" href="/pro/watch-plan">补番计划</a>
+                    <a class="secondary-btn" href="/pro/calendar">追番日历</a>
+                    <a class="secondary-btn" href="/pro/batch">批量整理</a>
+                    <a class="secondary-btn" href="/pro/duplicates">重复清理</a>
+                    <a class="secondary-btn" href="/pro/health">档案体检</a>
+                    <a class="secondary-btn" href="/pro/export/json">下载备份</a>
+                </div>
+            </div>
+            <div class="pro-status-card">
+                <span th:text="${loginUser.pro ? '当前状态' : '早鸟价'}">早鸟价</span>
+                <strong th:text="${loginUser.pro ? 'VIP 已开通' : '3 元起'}">3 元起</strong>
+                <p th:text="${loginUser.pro ? '到期时间：' + loginUser.proExpireTime : '先用低价验证有没有人愿意为番剧回忆录付费。'}">先验证付费。</p>
+                <div class="pro-mini-meter">
+                    <label>档案完成度</label>
+                    <div><i th:style="'width:' + ${stats.animeCount > 30 ? 100 : stats.animeCount * 3} + '%'"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pro-showcase-grid">
+            <article class="wide">
+                <span>01</span>
+                <h3>VIP 回忆资产工作台</h3>
+                <p>给每部番剧计算完整度、展示价值和补全建议，并生成可复制的分享文案。这个功能最适合作为付费版核心卖点。</p>
+                <a href="/pro/asset-lab">进入资产工作台</a>
+            </article>
+            <article>
+                <span>02</span>
+                <h3>今日整理台</h3>
+                <p>自动给出下一部建议、补全任务、分享文案和导出入口，让用户每天打开都有事可做。</p>
+                <a href="/pro/briefing">进入整理台</a>
+            </article>
+            <article>
+                <span>03</span>
+                <h3>主题片单生成器</h3>
+                <p>按高分、治愈、热血、恋爱、待补完等主题自动整理片单，方便发给朋友或当作主页内容。</p>
+                <a href="/pro/playlists">生成片单</a>
+            </article>
+            <article>
+                <span>04</span>
+                <h3>7 天补番计划</h3>
+                <p>根据在看、想看、评分和集数自动安排一周观看任务，不只是记录过去，也推动未来。</p>
+                <a href="/pro/watch-plan">查看计划</a>
+            </article>
+            <article>
+                <span>05</span>
+                <h3>手机追番日历</h3>
+                <p>把 7 天补番计划导出成 .ics 文件，导入手机系统日历，提醒用户按自己的节奏继续看。</p>
+                <a href="/pro/calendar">生成日历</a>
+            </article>
+            <article>
+                <span>06</span>
+                <h3>批量整理中心</h3>
+                <p>按缺封面、缺评分、缺感想、待推进、可分享作品筛选，并批量改状态、批量加标签。</p>
+                <a href="/pro/batch">开始整理</a>
+            </article>
+            <article>
+                <span>07</span>
+                <h3>截图导入和数据清理</h3>
+                <p>截图导入、重复记录清理、档案体检、JSON/CSV 备份，让重度用户长期使用也放心。</p>
+                <a href="/import/screenshot">导入截图</a>
+            </article>
+        </section>
+
+        <section class="pro-compare glass-panel">
+            <div>
+                <p class="eyebrow">WHY PAY</p>
+                <h3>免费版像收藏夹，VIP 像一套番剧档案运营工具。</h3>
+            </div>
+            <div class="compare-table">
+                <div><span>功能</span><strong>免费版</strong><strong>VIP</strong></div>
+                <div><span>番剧/角色/台词记录</span><strong>基础记录</strong><strong>高额度与整理工具</strong></div>
+                <div><span>截图导入</span><strong>不可用</strong><strong>可用</strong></div>
+                <div><span>资产评分</span><strong>不可用</strong><strong>自动计算展示价值</strong></div>
+                <div><span>主题片单</span><strong>手动整理</strong><strong>自动生成</strong></div>
+                <div><span>补番计划</span><strong>不可用</strong><strong>7 天规划</strong></div>
+                <div><span>档案体检/重复清理</span><strong>手动查找</strong><strong>自动发现问题</strong></div>
+                <div><span>数据导出</span><strong>不可用</strong><strong>JSON/CSV 备份</strong></div>
+            </div>
+        </section>
+
+        <section class="glass-panel pro-usage">
+            <div>
+                <span>当前档案</span>
+                <strong th:text="${stats.animeCount}">0</strong>
+                <p>番剧记录</p>
+            </div>
+            <div>
+                <span>内容资产</span>
+                <strong th:text="${stats.characterCount + stats.quoteCount}">0</strong>
+                <p>角色与台词</p>
+            </div>
+            <div>
+                <span>公开地址</span>
+                <strong th:text="'/u/' + ${loginUser.userName}">/u/sekai</strong>
+                <p>可以当作二次元个人名片</p>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

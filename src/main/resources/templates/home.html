@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 首页</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a class="active" href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/advanced">高级功能</a>
+            <a href="/pro">Pro</a>
+            <a href="/search">搜索</a>
+            <a href="/image-lab">图片工具</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">旅人</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="hero-panel">
+            <div>
+                <p class="eyebrow">PRIVATE MEMORY ARCHIVE</p>
+                <h2>把喜欢的世界，安静地收进你的书架</h2>
+                <p>这里可以记录追过的番剧、最喜欢的角色、突然击中心脏的台词，以及每一次被治愈的理由。</p>
+                <div class="quick-actions">
+                    <a class="primary-btn" href="/anime">记录番剧</a>
+                    <a class="secondary-btn" href="/characters">收藏角色</a>
+                    <a class="secondary-btn" href="/quotes">摘录台词</a>
+                    <a class="secondary-btn" href="/timeline">翻时间线</a>
+                    <a class="secondary-btn" href="/yearly-report">看年度报告</a>
+                    <a class="secondary-btn" href="/advanced">打开高级功能</a>
+                    <a class="secondary-btn" href="/import/screenshot">截图导入</a>
+                    <a class="secondary-btn" th:href="@{'/u/' + ${loginUser.userName}}">公开主页</a>
+                </div>
+            </div>
+            <div class="stats-grid dashboard-stats">
+                <div class="stat-card"><span>番剧档案</span><strong th:text="${stats.animeCount}">0</strong></div>
+                <div class="stat-card"><span>平均评分</span><strong th:text="${stats.averageScore != null ? stats.averageScore : '-'}">-</strong></div>
+                <div class="stat-card"><span>已看完</span><strong th:text="${stats.watchedCount}">0</strong></div>
+                <div class="stat-card"><span>角色收藏</span><strong th:text="${stats.characterCount}">0</strong></div>
+                <div class="stat-card"><span>台词摘录</span><strong th:text="${stats.quoteCount}">0</strong></div>
+                <div class="stat-card"><span>常用标签</span><strong class="text-stat" th:text="${stats.topTag}">暂无</strong></div>
+            </div>
+        </section>
+
+        <section class="insight-strip">
+            <div class="insight-card">
+                <span>最常记录类型</span>
+                <strong th:text="${stats.topType}">暂无</strong>
+            </div>
+            <div class="insight-card">
+                <span>最近番剧</span>
+                <strong th:text="${#lists.isEmpty(recentAnimeList) ? '暂无' : recentAnimeList[0].title}">暂无</strong>
+            </div>
+            <div class="insight-card">
+                <span>下一步</span>
+                <strong>翻时间线</strong>
+            </div>
+        </section>
+
+        <section class="module-grid">
+            <a class="module-card" href="/anime">
+                <h3>番剧回忆</h3>
+                <p>记录标题、类型、标签、观看状态、评分和观后感，给每部作品留一个位置。</p>
+            </a>
+            <a class="module-card" href="/characters">
+                <h3>角色收藏</h3>
+                <p>收藏喜欢的角色，写下喜欢理由和喜爱程度，做自己的角色墙</p>
+            </a>
+            <a class="module-card" href="/quotes">
+                <h3>台词摘录</h3>
+                <p>保存那些想反复看的台词，配上角色、标签和当时的心情</p>
+            </a>
+        </section>
+
+        <section class="recent-section" th:if="${!#lists.isEmpty(recentAnimeList)}">
+            <div class="section-heading">
+                <h3>最近更新</h3>
+                <a href="/anime">查看全部</a>
+            </div>
+            <div class="recent-grid">
+                <a class="mini-card" th:each="anime : ${recentAnimeList}" th:href="@{'/anime/' + ${anime.id}}">
+                    <strong th:text="${anime.title}">番剧名称</strong>
+                    <div class="meta-row">
+                        <span class="tag" th:if="${anime.status}" th:text="${anime.status}">状态</span>
+                        <span class="tag" th:if="${anime.score}" th:text="${anime.score + ' 分'}">评分</span>
+                    </div>
+                    <p th:if="${anime.memoryText}" th:text="${anime.memoryText}">回忆笔记</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

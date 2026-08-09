@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sekai.memory.book.mapper.SekaiMemoryBookOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.sekai.memory.book.dataobject.SekaiMemoryBookOrderDO">
+        <id property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="planCode" column="plan_code"/>
+        <result property="amount" column="amount"/>
+        <result property="payChannel" column="pay_channel"/>
+        <result property="status" column="status"/>
+        <result property="paidTime" column="paid_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, order_no, user_id, plan_code, amount, pay_channel, status, paid_time, create_time, update_time
+    </sql>
+
+    <insert id="insertSelective"
+            parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookOrderDO"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO sekai_memory_book_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">order_no,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="planCode != null">plan_code,</if>
+            <if test="amount != null">amount,</if>
+            <if test="payChannel != null">pay_channel,</if>
+            <if test="status != null">status,</if>
+            <if test="paidTime != null">paid_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="planCode != null">#{planCode},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="payChannel != null">#{payChannel},</if>
+            <if test="status != null">#{status},</if>
+            <if test="paidTime != null">#{paidTime},</if>
+        </trim>
+    </insert>
+
+    <select id="selectByOrderNo" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sekai_memory_book_order
+        WHERE order_no = #{orderNo}
+    </select>
+
+    <select id="listByUserId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sekai_memory_book_order
+        WHERE user_id = #{userId}
+        ORDER BY create_time DESC, id DESC
+    </select>
+
+    <update id="updateStatusPaid" parameterType="com.sekai.memory.book.dataobject.SekaiMemoryBookOrderDO">
+        UPDATE sekai_memory_book_order
+        SET status = #{status},
+            pay_channel = #{payChannel},
+            paid_time = #{paidTime}
+        WHERE order_no = #{orderNo}
+    </update>
+
+</mapper>

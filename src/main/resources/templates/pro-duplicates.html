@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 重复清理</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/pro/batch">批量整理</a>
+            <a href="/pro/health">体检</a>
+            <a class="active" href="/pro">Pro</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="duplicate-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP DUPLICATE CLEANER</p>
+                <h2>重复记录清理中心</h2>
+                <p>截图导入、手动补录、批量迁移后最容易产生重复。这里会自动找出相似标题、同作品重复角色、同作品重复台词，让用户自己勾选要删除的条目。</p>
+                <div class="quick-actions">
+                    <a class="secondary-btn" href="/pro/batch">批量整理</a>
+                    <a class="secondary-btn" href="/pro/export/json">清理前备份</a>
+                    <a class="secondary-btn" href="/pro/health">档案体检</a>
+                </div>
+            </div>
+            <div class="duplicate-stat-card">
+                <span>可清理重复项</span>
+                <strong th:text="${duplicateCount}">0</strong>
+                <p>建议先导出备份，再手动勾选确认删除。</p>
+            </div>
+        </section>
+
+        <section class="duplicate-list" th:if="${!#lists.isEmpty(duplicateGroups)}">
+            <article class="duplicate-group" th:each="group : ${duplicateGroups}">
+                <div class="section-heading">
+                    <div>
+                        <h3 th:text="${group.typeLabel + '重复：' + group.key}">重复组</h3>
+                        <p th:text="${#lists.size(group.items) + ' 条相似记录，保留信息最完整的一条即可。'}">说明</p>
+                    </div>
+                    <span th:text="${group.typeLabel}">类型</span>
+                </div>
+                <form method="post" action="/pro/duplicates/delete">
+                    <input type="hidden" name="type" th:value="${group.type}">
+                    <div class="duplicate-item-list">
+                        <label th:each="item, iter : ${group.items}">
+                            <input type="checkbox" name="ids" th:value="${item.id}" th:disabled="${iter.index == 0}">
+                            <div>
+                                <strong th:text="${item.title}">标题</strong>
+                                <p th:text="${item.detail != null && !#strings.isEmpty(item.detail) ? item.detail : '暂无补充信息'}">详情</p>
+                                <a th:href="${item.href}">打开查看</a>
+                            </div>
+                            <time th:text="${item.time != null ? #temporals.format(item.time, 'yyyy-MM-dd HH:mm') : '无时间'}">时间</time>
+                            <em th:if="${iter.index == 0}">默认保留</em>
+                        </label>
+                    </div>
+                    <button class="danger-btn" type="submit">删除勾选重复项</button>
+                </form>
+            </article>
+        </section>
+
+        <section class="health-empty" th:if="${#lists.isEmpty(duplicateGroups)}">
+            <h3>暂时没有发现重复记录</h3>
+            <p>当前档案很干净。之后批量导入截图或迁移数据后，可以回到这里再次检查。</p>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

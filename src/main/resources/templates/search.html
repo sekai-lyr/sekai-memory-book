@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 全站搜索</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/advanced">高级功能</a>
+            <a class="active" href="/search">搜索</a>
+            <a href="/image-lab">图片工具</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">旅人</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="page-title glass-panel">
+            <p class="eyebrow">GLOBAL SEARCH</p>
+            <h2>全站搜索</h2>
+            <p>一次搜索番剧、角色、台词、标签和观后感。</p>
+        </section>
+
+        <form class="toolbar glass-panel" action="/search" method="get">
+            <input name="q" type="search" th:value="${q}" placeholder="搜索标题、角色、台词、标签或笔记">
+            <button class="primary-btn" type="submit">搜索</button>
+        </form>
+
+        <section class="list-panel search-results">
+            <div class="empty-state glass-panel" th:if="${#strings.isEmpty(q)}">输入关键词后开始搜索。</div>
+            <div class="empty-state glass-panel" th:if="${!#strings.isEmpty(q) && #lists.isEmpty(results)}">没有找到相关记忆</div>
+            <a class="search-result-card" th:each="result : ${results}" th:href="${result.href}">
+                <span class="tag" th:text="${result.type}">类型</span>
+                <h3 th:text="${result.title}">标题</h3>
+                <p class="timeline-subtitle" th:if="${result.subtitle}" th:text="${result.subtitle}">副标</p>
+                <p th:if="${result.body}" th:text="${result.body}">内容</p>
+            </a>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 年度报告</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a class="active" href="/yearly-report">年度报告</a>
+            <a href="/pro">VIP</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="report-hero glass-panel">
+            <div>
+                <p class="eyebrow">YEARLY MEMORY REPORT</p>
+                <h2 th:text="${report.year + ' 年回忆报告'}">2026 年回忆报告</h2>
+                <p>把这一年收藏、看完、喜欢过的作品整理成一张可以复盘的年鉴。</p>
+            </div>
+            <form class="year-picker" action="/yearly-report" method="get">
+                <label for="year">切换年份</label>
+                <select id="year" name="year">
+                    <option th:each="year : ${availableYears}"
+                            th:value="${year}"
+                            th:selected="${year == selectedYear}"
+                            th:text="${year}">2026</option>
+                </select>
+                <button class="primary-btn" type="submit">查看</button>
+            </form>
+        </section>
+
+        <section class="report-metrics">
+            <div class="stat-card"><span>年度番剧</span><strong th:text="${report.animeCount}">0</strong></div>
+            <div class="stat-card"><span>看完数量</span><strong th:text="${report.watchedCount}">0</strong></div>
+            <div class="stat-card"><span>平均评分</span><strong th:text="${report.averageScore != null ? report.averageScore : '-'}">-</strong></div>
+            <div class="stat-card"><span>角色收藏</span><strong th:text="${report.characterCount}">0</strong></div>
+            <div class="stat-card"><span>台词摘录</span><strong th:text="${report.quoteCount}">0</strong></div>
+            <div class="stat-card"><span>高光月份</span><strong class="text-stat" th:text="${report.topMonth}">暂无</strong></div>
+        </section>
+
+        <section class="report-grid">
+            <article class="report-panel">
+                <div class="section-heading">
+                    <h3>月度热力</h3>
+                    <span th:text="${report.animeCount + report.characterCount + report.quoteCount + ' 条记录'}">0 条记录</span>
+                </div>
+                <div class="month-bars">
+                    <div class="month-row" th:each="month : ${report.monthlyCounts}">
+                        <span th:text="${month.label}">1月</span>
+                        <div class="month-track">
+                            <div class="month-fill" th:style="${'width:' + month.percent + '%'}"></div>
+                        </div>
+                        <strong th:text="${month.count}">0</strong>
+                    </div>
+                </div>
+            </article>
+
+            <article class="report-panel">
+                <div class="section-heading">
+                    <h3>年度标签</h3>
+                    <span th:text="${report.topTag}">暂无</span>
+                </div>
+                <div class="rank-list" th:if="${!#lists.isEmpty(report.tagRanks)}">
+                    <div class="rank-row" th:each="tag, stat : ${report.tagRanks}">
+                        <span th:text="${stat.count}">1</span>
+                        <strong th:text="${tag.text}">治愈</strong>
+                        <em th:text="${tag.count + ' 次'}">1 次</em>
+                    </div>
+                </div>
+                <div class="empty-state compact" th:if="${#lists.isEmpty(report.tagRanks)}">今年还没有标签记录</div>
+            </article>
+
+            <article class="report-panel spotlight-panel">
+                <div class="section-heading">
+                    <h3>最高分番剧</h3>
+                    <a th:if="${report.highestScoreAnime != null}" th:href="@{'/anime/' + ${report.highestScoreAnime.id}}">详情</a>
+                </div>
+                <div th:if="${report.highestScoreAnime != null}">
+                    <h4 th:text="${report.highestScoreAnime.title}">番剧标题</h4>
+                    <p th:text="${report.highestScoreAnime.score + ' 分 / ' + (report.highestScoreAnime.type != null ? report.highestScoreAnime.type : '未分类')}">10 分</p>
+                    <div class="meta-row" th:if="${report.highestScoreAnime.tags}">
+                        <span class="tag" th:each="tag : ${#strings.arraySplit(report.highestScoreAnime.tags, ',')}" th:text="${#strings.trim(tag)}">标签</span>
+                    </div>
+                </div>
+                <div class="empty-state compact" th:if="${report.highestScoreAnime == null}">今年还没有带评分的番剧</div>
+            </article>
+
+            <article class="report-panel spotlight-panel">
+                <div class="section-heading">
+                    <h3>年度角色</h3>
+                </div>
+                <div th:if="${report.favoriteCharacter != null}">
+                    <h4 th:text="${report.favoriteCharacter.characterName}">角色</h4>
+                    <p th:if="${report.favoriteCharacter.favoriteLevel != null}" th:text="${report.favoriteCharacter.favoriteLevel + ' 星喜欢'}">5 星喜欢</p>
+                    <p th:if="${report.favoriteCharacter.reason}" th:text="${report.favoriteCharacter.reason}">喜欢理由</p>
+                </div>
+                <div class="empty-state compact" th:if="${report.favoriteCharacter == null}">今年还没有收藏角色</div>
+            </article>
+
+            <article class="report-panel quote-report-panel">
+                <div class="section-heading">
+                    <h3>年度台词</h3>
+                    <span th:text="${#lists.isEmpty(report.quoteTagRanks) ? '暂无标签' : report.quoteTagRanks[0].text}">暂无标签</span>
+                </div>
+                <blockquote th:if="${report.memorableQuote != null}">
+                    <p th:text="${report.memorableQuote.content}">台词内容</p>
+                    <cite th:text="${report.memorableQuote.characterName != null && !#strings.isEmpty(report.memorableQuote.characterName) ? report.memorableQuote.characterName : '未知角色'}">角色</cite>
+                    <div class="quote-video compact" th:if="${report.memorableQuote.hasVideoUrl()}">
+                        <video th:if="${report.memorableQuote.directVideoUrl}" th:src="${report.memorableQuote.videoUrl}" controls preload="metadata"></video>
+                        <iframe th:if="${report.memorableQuote.embeddableVideoUrl != null}" th:src="${report.memorableQuote.embeddableVideoUrl}" title="台词视频" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <a class="quote-video-link" th:if="${!report.memorableQuote.directVideoUrl && report.memorableQuote.embeddableVideoUrl == null}" th:href="${report.memorableQuote.videoUrl}" target="_blank" rel="noopener">打开台词视频</a>
+                    </div>
+                </blockquote>
+                <div class="empty-state compact" th:if="${report.memorableQuote == null}">今年还没有摘录台词</div>
+            </article>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

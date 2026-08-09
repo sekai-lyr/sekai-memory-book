@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 时间线</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a class="active" href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/advanced">高级功能</a>
+            <a href="/search">搜索</a>
+            <a href="/image-lab">图片工具</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">旅人</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="page-title glass-panel">
+            <p class="eyebrow">MEMORY TIMELINE</p>
+            <h2>回忆时间线</h2>
+            <p>番剧、角色和台词会按记录时间汇在一起，往下翻的时候，就像翻一页自己的追番年表。</p>
+        </section>
+
+        <section class="insight-strip timeline-summary">
+            <div class="insight-card">
+                <span>番剧</span>
+                <strong th:text="${stats.animeCount}">0</strong>
+            </div>
+            <div class="insight-card">
+                <span>角色</span>
+                <strong th:text="${stats.characterCount}">0</strong>
+            </div>
+            <div class="insight-card">
+                <span>台词</span>
+                <strong th:text="${stats.quoteCount}">0</strong>
+            </div>
+        </section>
+
+        <section class="timeline-panel">
+            <div class="empty-state glass-panel" th:if="${#lists.isEmpty(timelineItems)}">
+                还没有任何回忆记录，先添加一部番剧、一位角色，或一句台词吧。
+            </div>
+
+            <article class="timeline-item" th:each="item : ${timelineItems}" th:classappend="${' timeline-' + item.type}">
+                <div class="timeline-dot" th:text="${item.badge}">番剧</div>
+                <a class="timeline-card" th:href="${item.href}">
+                    <div class="timeline-image" th:if="${item.imageUrl != null && !#strings.isEmpty(item.imageUrl)}">
+                        <img th:src="${item.imageUrl}" alt="回忆图片" onerror="this.parentElement.remove()">
+                    </div>
+                    <div class="timeline-copy">
+                        <div class="timeline-topline">
+                            <span class="tag" th:text="${item.badge}">类型</span>
+                            <time th:if="${item.occurredAt}" th:text="${#temporals.format(item.occurredAt, 'yyyy-MM-dd')}">2026-05-05</time>
+                        </div>
+                        <h3 th:text="${item.title}">标题</h3>
+                        <p class="timeline-subtitle" th:if="${item.subtitle}" th:text="${item.subtitle}">副标</p>
+                        <p th:if="${item.body}" th:text="${item.body}">内容</p>
+                    </div>
+                </a>
+            </article>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

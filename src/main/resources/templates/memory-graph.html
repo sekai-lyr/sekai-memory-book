@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - 记忆图谱</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>二次元回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/characters">角色</a>
+            <a href="/quotes">台词</a>
+            <a href="/timeline">时间线</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/advanced">高级功能</a>
+            <a class="active" href="/memory-graph">记忆图谱</a>
+            <a href="/search">搜索</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="graph-hero glass-panel">
+            <div>
+                <p class="eyebrow">INTERACTIVE MEMORY GRAPH</p>
+                <h2>把番剧、角色、台词连成一张记忆星图。</h2>
+                <p>节点越大，关联越多。拖动节点可以整理图谱，滚轮可以缩放，点击节点能看到详情并跳回原始记录。</p>
+            </div>
+            <div class="graph-metrics">
+                <div><span>番剧</span><strong th:text="${stats.animeCount}">0</strong></div>
+                <div><span>角色</span><strong th:text="${stats.characterCount}">0</strong></div>
+                <div><span>台词</span><strong th:text="${stats.quoteCount}">0</strong></div>
+            </div>
+        </section>
+
+        <section class="memory-graph-workspace">
+            <aside class="graph-sidebar lab-panel">
+                <div class="section-heading">
+                    <h3>图谱控制</h3>
+                    <span id="visibleCount">0 个节点</span>
+                </div>
+                <label class="graph-field">
+                    <span>搜索</span>
+                    <input id="graphSearch" type="search" placeholder="输入番剧、角色、台词或标签">
+                </label>
+                <div class="graph-filter-grid">
+                    <label><input type="checkbox" data-type="anime" checked> 番剧</label>
+                    <label><input type="checkbox" data-type="character" checked> 角色</label>
+                    <label><input type="checkbox" data-type="quote" checked> 台词</label>
+                    <label><input type="checkbox" data-type="tag" checked> 标签</label>
+                </div>
+                <div class="graph-actions">
+                    <button class="secondary-btn" type="button" id="resetGraph">重排</button>
+                    <button class="secondary-btn" type="button" id="fitGraph">居中</button>
+                </div>
+                <div class="graph-legend">
+                    <span class="legend-anime">番剧</span>
+                    <span class="legend-character">角色</span>
+                    <span class="legend-quote">台词</span>
+                    <span class="legend-tag">标签</span>
+                </div>
+                <article class="graph-detail" id="graphDetail">
+                    <strong>选择一个节点</strong>
+                    <p>点击图中的番剧、角色、台词或标签，会在这里显示关联信息。</p>
+                </article>
+            </aside>
+
+            <section class="graph-canvas-panel lab-panel">
+                <canvas id="memoryGraphCanvas" width="980" height="680"></canvas>
+            </section>
+        </section>
+    </main>
+</div>
+
+<script th:inline="javascript">
+const graphData = JSON.parse(/*[[${graphJson}]]*/ '{"nodes":[],"edges":[]}');
+</script>
+<script>
+(() => {
+    const canvas = document.getElementById("memoryGraphCanvas");
+    const ctx = canvas.getContext("2d");
+    const searchInput = document.getElementById("graphSearch");
+    const visibleCount = document.getElementById("visibleCount");
+    const detail = document.getElementById("graphDetail");
+    const typeChecks = [...document.querySelectorAll("[data-type]")];
+    const colors = {
+        anime: "#f34f98",
+        character: "#3f9f9a",
+        quote: "#d86d4c",
+        tag: "#7b3ac9"
+    };
+    const nodes = graphData.nodes.map((node, index) => ({
+        ...node,
+        x: Math.cos(index * 2.399) * (120 + index % 9 * 18),
+        y: Math.sin(index * 2.399) * (120 + index % 9 * 18),
+        vx: 0,
+        vy: 0,
+        radius: Math.max(8, Number(node.size || 12)),
+        degree: 0,
+        visible: true
+    }));
+    const nodeById = new Map(nodes.map(node => [node.id, node]));
+    const edges = graphData.edges
+        .map(edge => ({...edge, sourceNode: nodeById.get(edge.source), targetNode: nodeById.get(edge.target)}))
+        .filter(edge => edge.sourceNode && edge.targetNode);
+    edges.forEach(edge => {
+        edge.sourceNode.degree += 1;
+        edge.targetNode.degree += 1;
+    });
+    nodes.forEach(node => node.radius += Math.min(10, node.degree * 0.65));
+
+    let scale = 1;
+    let offsetX = 0;
+    let offsetY = 0;
+    let hovered = null;
+    let selected = null;
+    let dragging = null;
+    let panning = false;
+    let lastPointer = null;
+    let running = true;
+
+    function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.max(640, Math.floor(rect.width * dpr));
+        canvas.height = Math.max(420, Math.floor(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function activeTypes() {
+        return new Set(typeChecks.filter(check => check.checked).map(check => check.dataset.type));
+    }
+
+    function nodeText(node) {
+        return `${node.label || ""} ${node.detail || ""} ${node.tags || ""}`.toLowerCase();
+    }
+
+    function applyFilters() {
+        const keyword = searchInput.value.trim().toLowerCase();
+        const types = activeTypes();
+        nodes.forEach(node => {
+            node.visible = types.has(node.type) && (!keyword || nodeText(node).includes(keyword));
+        });
+        visibleCount.textContent = `${nodes.filter(node => node.visible).length} 个节点`;
+    }
+
+    function layoutTick() {
+        const visibleNodes = nodes.filter(node => node.visible);
+        for (let i = 0; i < visibleNodes.length; i++) {
+            const a = visibleNodes[i];
+            for (let j = i + 1; j < visibleNodes.length; j++) {
+                const b = visibleNodes[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist2 = Math.max(80, dx * dx + dy * dy);
+                const force = 1800 / dist2;
+                const dist = Math.sqrt(dist2);
+                const fx = dx / dist * force;
+                const fy = dy / dist * force;
+                a.vx += fx;
+                a.vy += fy;
+                b.vx -= fx;
+                b.vy -= fy;
+            }
+        }
+        edges.forEach(edge => {
+            if (!edge.sourceNode.visible || !edge.targetNode.visible) return;
+            const a = edge.sourceNode;
+            const b = edge.targetNode;
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const dist = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+            const target = edge.type === "tag" ? 115 : 150;
+            const force = (dist - target) * 0.012;
+            const fx = dx / dist * force;
+            const fy = dy / dist * force;
+            a.vx += fx;
+            a.vy += fy;
+            b.vx -= fx;
+            b.vy -= fy;
+        });
+        visibleNodes.forEach(node => {
+            if (node === dragging) return;
+            node.vx += -node.x * 0.002;
+            node.vy += -node.y * 0.002;
+            node.vx *= 0.84;
+            node.vy *= 0.84;
+            node.x += node.vx;
+            node.y += node.vy;
+        });
+    }
+
+    function screenToWorld(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (clientX - rect.left - rect.width / 2 - offsetX) / scale,
+            y: (clientY - rect.top - rect.height / 2 - offsetY) / scale
+        };
+    }
+
+    function draw() {
+        const rect = canvas.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
+        ctx.save();
+        ctx.translate(rect.width / 2 + offsetX, rect.height / 2 + offsetY);
+        ctx.scale(scale, scale);
+
+        edges.forEach(edge => {
+            if (!edge.sourceNode.visible || !edge.targetNode.visible) return;
+            ctx.beginPath();
+            ctx.moveTo(edge.sourceNode.x, edge.sourceNode.y);
+            ctx.lineTo(edge.targetNode.x, edge.targetNode.y);
+            ctx.strokeStyle = edge.type === "tag" ? "rgba(123, 58, 201, 0.16)" : "rgba(81, 48, 125, 0.18)";
+            ctx.lineWidth = edge.type === "says" ? 1.5 : 1;
+            ctx.stroke();
+        });
+
+        nodes.filter(node => node.visible).forEach(node => {
+            const isHot = node === hovered || node === selected;
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius + (isHot ? 5 : 0), 0, Math.PI * 2);
+            ctx.fillStyle = isHot ? "rgba(255, 255, 255, 0.92)" : "rgba(255, 255, 255, 0.72)";
+            ctx.fill();
+            ctx.lineWidth = isHot ? 4 : 2;
+            ctx.strokeStyle = colors[node.type] || "#9b3ee8";
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, Math.max(4, node.radius - 7), 0, Math.PI * 2);
+            ctx.fillStyle = colors[node.type] || "#9b3ee8";
+            ctx.fill();
+
+            if (isHot || node.type === "anime") {
+                ctx.font = `${isHot ? 14 : 12}px Microsoft YaHei, Arial`;
+                ctx.fillStyle = "#322c46";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+                const label = node.label.length > 14 ? node.label.slice(0, 14) + "..." : node.label;
+                ctx.fillText(label, node.x, node.y + node.radius + 8);
+            }
+        });
+        ctx.restore();
+    }
+
+    function frame() {
+        if (running) {
+            for (let i = 0; i < 2; i++) layoutTick();
+        }
+        draw();
+        requestAnimationFrame(frame);
+    }
+
+    function nearestNode(clientX, clientY) {
+        const point = screenToWorld(clientX, clientY);
+        let best = null;
+        let bestDistance = Infinity;
+        nodes.filter(node => node.visible).forEach(node => {
+            const dx = node.x - point.x;
+            const dy = node.y - point.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < node.radius + 10 && distance < bestDistance) {
+                best = node;
+                bestDistance = distance;
+            }
+        });
+        return best;
+    }
+
+    function showDetail(node) {
+        selected = node;
+        if (!node) {
+            detail.innerHTML = "<strong>选择一个节点</strong><p>点击图中的番剧、角色、台词或标签，会在这里显示关联信息。</p>";
+            return;
+        }
+        const connected = edges
+            .filter(edge => edge.sourceNode === node || edge.targetNode === node)
+            .map(edge => edge.sourceNode === node ? edge.targetNode : edge.sourceNode)
+            .filter(other => other.visible)
+            .slice(0, 8);
+        detail.innerHTML = `
+            <span class="graph-type ${node.type}">${typeName(node.type)}</span>
+            <strong>${escapeHtml(node.label)}</strong>
+            <p>${escapeHtml(node.detail || "暂无详情")}</p>
+            <div class="graph-related">${connected.map(other => `<span>${escapeHtml(other.label)}</span>`).join("")}</div>
+            <a class="primary-btn" href="${escapeHtml(node.href || "/home")}">打开记录</a>
+        `;
+    }
+
+    function typeName(type) {
+        return {anime: "番剧", character: "角色", quote: "台词", tag: "标签"}[type] || type;
+    }
+
+    function escapeHtml(value) {
+        return String(value || "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#39;"
+        }[char]));
+    }
+
+    canvas.addEventListener("pointerdown", event => {
+        const node = nearestNode(event.clientX, event.clientY);
+        lastPointer = {x: event.clientX, y: event.clientY};
+        if (node) {
+            dragging = node;
+            running = true;
+            showDetail(node);
+        } else {
+            panning = true;
+        }
+        canvas.setPointerCapture(event.pointerId);
+    });
+    canvas.addEventListener("pointermove", event => {
+        hovered = nearestNode(event.clientX, event.clientY);
+        canvas.style.cursor = hovered ? "grab" : panning ? "grabbing" : "default";
+        if (dragging) {
+            const point = screenToWorld(event.clientX, event.clientY);
+            dragging.x = point.x;
+            dragging.y = point.y;
+            dragging.vx = 0;
+            dragging.vy = 0;
+        } else if (panning && lastPointer) {
+            offsetX += event.clientX - lastPointer.x;
+            offsetY += event.clientY - lastPointer.y;
+        }
+        lastPointer = {x: event.clientX, y: event.clientY};
+    });
+    canvas.addEventListener("pointerup", event => {
+        dragging = null;
+        panning = false;
+        lastPointer = null;
+        canvas.releasePointerCapture(event.pointerId);
+    });
+    canvas.addEventListener("wheel", event => {
+        event.preventDefault();
+        const next = scale * (event.deltaY > 0 ? 0.92 : 1.08);
+        scale = Math.max(0.28, Math.min(2.6, next));
+    }, {passive: false});
+
+    searchInput.addEventListener("input", applyFilters);
+    typeChecks.forEach(check => check.addEventListener("change", applyFilters));
+    document.getElementById("resetGraph").addEventListener("click", () => {
+        nodes.forEach((node, index) => {
+            node.x = Math.cos(index * 2.399) * (120 + index % 9 * 18);
+            node.y = Math.sin(index * 2.399) * (120 + index % 9 * 18);
+            node.vx = 0;
+            node.vy = 0;
+        });
+        running = true;
+    });
+    document.getElementById("fitGraph").addEventListener("click", () => {
+        offsetX = 0;
+        offsetY = 0;
+        scale = 1;
+    });
+    window.addEventListener("resize", resizeCanvas);
+
+    resizeCanvas();
+    applyFilters();
+    frame();
+})();
+</script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

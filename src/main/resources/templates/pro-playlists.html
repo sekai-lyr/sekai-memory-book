@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekai Memory Book - VIP 主题片单</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" href="/css/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#9b3ee8">
+</head>
+<body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-mark" href="/home">
+            <h1>Sekai Memory Book</h1>
+            <p>番剧回忆录</p>
+        </a>
+        <nav class="nav">
+            <a href="/home">首页</a>
+            <a href="/anime">番剧</a>
+            <a href="/yearly-report">年度报告</a>
+            <a href="/memory-graph">记忆图谱</a>
+            <a class="active" href="/pro">Pro</a>
+            <span class="user-chip" th:text="${loginUser.nickName != null && !#strings.isEmpty(loginUser.nickName) ? loginUser.nickName : loginUser.userName}">sekai</span>
+            <a href="/logout">退出</a>
+        </nav>
+    </header>
+
+    <main class="main-wrap">
+        <section class="playlist-hero glass-panel">
+            <div>
+                <p class="eyebrow">VIP PLAYLIST BUILDER</p>
+                <h2>主题片单生成器</h2>
+                <p>自动把你的番剧档案整理成高分神作、治愈放松、热血战斗、恋爱青春、待补完、适合分享等片单。用户买的不是容量，而是整理能力。</p>
+                <div class="quick-actions">
+                    <a class="primary-btn" href="/pro/briefing">今日整理台</a>
+                    <a class="secondary-btn" href="/pro/health">档案体检</a>
+                    <a class="secondary-btn" th:href="@{'/u/' + ${loginUser.userName}}">公开展馆</a>
+                </div>
+            </div>
+            <div class="playlist-stat-card">
+                <span>已分析档案</span>
+                <strong th:text="${stats.animeCount}">0</strong>
+                <p>部番剧会参与片单生成，标签、评分、感想越完整，片单越像真正的个人推荐榜。</p>
+            </div>
+        </section>
+
+        <section class="playlist-grid" th:if="${!#lists.isEmpty(playlists)}">
+            <article class="playlist-panel" th:each="playlist : ${playlists}">
+                <div class="section-heading">
+                    <div>
+                        <h3 th:text="${playlist.title}">片单</h3>
+                        <p th:text="${playlist.description}">说明</p>
+                    </div>
+                    <span th:text="${#lists.size(playlist.animeList) + ' 部'}">0 部</span>
+                </div>
+                <div class="playlist-copy">
+                    <strong th:text="${playlist.title + '：'}">片单：</strong>
+                    <span th:text="${#strings.listJoin(playlist.animeList.![title], ' / ')}">番剧列表</span>
+                </div>
+                <div class="playlist-anime-grid">
+                    <a th:each="anime : ${playlist.animeList}" th:href="@{'/anime/' + ${anime.id}}">
+                        <img th:if="${anime.coverUrl != null && !#strings.isEmpty(anime.coverUrl)}" th:src="${anime.coverUrl}" alt="封面" onerror="this.remove()">
+                        <strong th:text="${anime.title}">番剧</strong>
+                        <span th:text="${anime.score != null ? anime.score + ' 分' : (anime.status != null ? anime.status : '未评分')}">评分</span>
+                    </a>
+                </div>
+            </article>
+        </section>
+
+        <section class="health-empty" th:if="${#lists.isEmpty(playlists)}">
+            <h3>暂时生成不了片单</h3>
+            <p>先给番剧补评分、标签、封面和感想，系统就能自动整理出更好看的主题片单。</p>
+        </section>
+    </main>
+</div>
+<script src="/js/pwa.js"></script>
+</body>
+</html>
